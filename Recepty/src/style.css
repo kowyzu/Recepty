@@ -6,7 +6,7 @@ body {
 
 
 
-.addReceipt{
+.addRecipe{
   display: grid;
   grid-template-columns: 1fr 1fr ;
   
@@ -14,7 +14,7 @@ body {
 
 
  
-.addReceiptInput, .buttonAddTitle, .buttonAddIngredient {
+.addRecipeInput, .buttonAddTitle, .buttonAddIngredient {
   height: 3rem;
   padding: 0.3rem;
   /* width: 20rem; */
@@ -33,7 +33,7 @@ body {
 
 
 
-.addReceiptTextArea {
+.addRecipeTextArea {
   height: 8rem;
   width: 70%;
   margin: 0 auto;
@@ -41,7 +41,7 @@ body {
   font-weight: bolder;
 }
 
-.saveReceiptButton {
+.saveRecipeButton {
   background-color: violet;
   height: 5rem;
   width: 15rem;
@@ -82,7 +82,7 @@ li {
 
 }
 
-.saveReceiptButton:hover {
+.saveRecipeButton:hover {
   background-color: blueviolet;
   cursor: pointer;
 }
