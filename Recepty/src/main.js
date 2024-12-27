@@ -11,6 +11,8 @@ const supabaseKey =
 // Initialize Supabase client
 const supabase = createClient(supabaseUrl, supabaseKey);
 
+//Functions//
+////////////
 async function fetchData() {
   const { data, error } = await supabase.from("Receipts").select();
 
@@ -26,6 +28,7 @@ async function fetchData() {
 //////////////////
 //Main Programm //
 /////////////////
+
 let receiptsData = [];
 await fetchData();
 
