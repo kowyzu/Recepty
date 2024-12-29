@@ -1,31 +1,15 @@
 console.log("hello from JS");
 
-import { createClient } from "@supabase/supabase-js";
+import JSConfetti from "js-confetti";
 
-// Access environment variables
-const supabaseUrl = "https://bandgkogwpfcbuprjlce.supabase.co";
+const jsConfetti = new JSConfetti();
 
-const supabaseKey =
-  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImJhbmRna29nd3BmY2J1cHJqbGNlIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MzUyMjYwODYsImV4cCI6MjA1MDgwMjA4Nn0.NLMW8IxkZ2q88PpCRcwJtmh6gRm-JxRrhF8iTxrCGVo";
-
-// Initialize Supabase client
-const supabase = createClient(supabaseUrl, supabaseKey);
+import { fetchData } from "./utils";
 
 //Functions//
 ////////////
-async function fetchData() {
-  const { data, error } = await supabase.from("Receipts").select();
 
-  if (error) {
-    console.error("Error fetching data:", error);
-    return;
-  }
-
-  console.log("Fetched data:", data);
-  recipesData = data;
-}
-
-function displayReceipt(recipesData) {
+async function displayRecipes(recipesData) {
   const recipesPlaceHolder = document.querySelector(".recipesList");
   console.log(recipesPlaceHolder);
 
@@ -55,23 +39,50 @@ function displayReceipt(recipesData) {
 
           </div>
 
-        <a href="#" class="btn btn-primary">Go somewhere</a>
+       <a id="${recipe.id}" href="#" class="btn btn-primary explodingBtn">Mrkni na recept!</a>
 
       </div>
 
     `;
     console.log(newRecipe);
+
     recipesPlaceHolder.appendChild(newRecipe);
   });
 }
 
+async function clickExplosion() {
+  const explodingButtons = document.querySelectorAll(".explodingBtn");
+
+  explodingButtons.forEach((explodingButton) => {
+    console.log(explodingButton);
+
+    let explodingButtonId = explodingButton.getAttribute("id");
+    console.log(explodingButtonId);
+
+    explodingButton.addEventListener("click", (event) => {
+      event.preventDefault();
+
+      jsConfetti.addConfetti({
+        emojis: ["🥘", "🥦", "🍩", "🍗", "🧁", "🍪"],
+      });
+      setTimeout(() => {
+        window.location.href = `detail.html?id=${explodingButtonId}`;
+      }, 1200);
+    });
+  });
+}
+
+function displayRecipeDetail(recipesData) {}
 //////////////////
 //Main Programm //
 /////////////////
 
-let recipesData = [];
-await fetchData();
+let recipesData = await fetchData();
 
 console.log(recipesData);
 
-displayReceipt(recipesData);
+await displayRecipes(recipesData);
+
+await clickExplosion();
+
+displayRecipeDetail(recipesData);

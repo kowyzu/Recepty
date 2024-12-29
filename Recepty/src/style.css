@@ -2,7 +2,48 @@ body {
   padding: 4rem;
   margin: 0rem auto;
   font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  background-color:#E5D9F2 ;
+}
+
+header {
+  margin-bottom: 2rem;
+}
+
+.bg-body-tertiary {
   
+  background-color: #cdc1ff82 !important;
+}
+
+.form-control {
+  border-color: pink;
+
+}
+
+.form-control:focus {
+  border-color: #69247C;
+  box-shadow: 0 0 0 .25rem rgba(255, 192, 203, 0.589);
+}
+
+.btn-outline-success {
+  --bs-btn-color: #0a010c;
+  --bs-btn-bg: #CDC1FF;
+  --bs-btn-border-color: #d07edb;
+  --bs-btn-hover-color: #fff;
+  --bs-btn-hover-bg: #A294F9;
+  --bs-btn-hover-border-color: #db42cd;
+  --bs-btn-focus-shadow-rgb: 49, 132, 253;
+  --bs-btn-active-color: #fff;
+  --bs-btn-active-bg: #a294f9;
+  --bs-btn-active-border-color: #db42cd;
+  --bs-btn-active-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+  --bs-btn-disabled-color: #fff;
+  --bs-btn-disabled-bg: #a294f9;
+  --bs-btn-disabled-border-color: #db42cd;
+}
+
+.dropdown-menu {
+  --bs-dropdown-bg: #E5D9F2;
+  --bs-dropdown-link-hover-bg: #cdc1ff82;
 }
 
 
@@ -130,11 +171,13 @@ button:hover {
   grid-template-columns: 1fr 1fr 1fr 1fr; 
   gap: 4rem;
   border: none;
+  background: none;
 }
 
 .recipe {
   border: var(--bs-card-border-width) solid var(--bs-card-border-color);
   border-radius: var(--bs-card-border-radius);
+  background-color: #F5EFFF;
 }
 
 .recipeName {
@@ -142,7 +185,7 @@ button:hover {
 }
 
 .btn-primary {
-  --bs-btn-color: #fff;
+  --bs-btn-color: #69247C;
   --bs-btn-bg: #CDC1FF;
   --bs-btn-border-color: #d07edb;
   --bs-btn-hover-color: #fff;
