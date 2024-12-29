@@ -236,4 +236,46 @@ button:hover {
 }
 
 
+/* detail CSS */
 
+h1.detailTitle  {
+  margin-top: 2rem;
+}
+
+.ingredientList  {
+  margin-bottom: 2rem;
+  --bs-list-group-bg: #cdc1ff82;
+  --bs-list-group-border-color: #A294F9;
+  /* max-width: 50%; */
+}
+
+.stepList {
+  margin-top: 1.5rem;
+  --bs-list-group-bg: #cdc1ff4f;
+  --bs-list-group-border-color: #A294F9;
+}
+
+.detailIntro {
+  justify-items: left;
+}
+
+h1.detailTitle  {
+  margin-top: 1.5rem;
+  justify-self: left;
+}
+
+
+
+.detailImg {
+
+  max-width: 15rem;
+  border-radius: 19px 19px 19px 19px;
+  -moz-border-radius: 19px 19px 19px 19px;
+  -webkit-border-radius: 19px 19px 19px 19px;
+  border: 0px solid #000000;
+}
+
+.dashed {
+  margin: 0;
+  border-top: 3px dashed #500073;
+}
