@@ -72,7 +72,6 @@ async function clickExplosion() {
   });
 }
 
-function displayRecipeDetail(recipesData) {}
 //////////////////
 //Main Programm //
 /////////////////
@@ -84,5 +83,3 @@ console.log(recipesData);
 await displayRecipes(recipesData);
 
 await clickExplosion();
-
-displayRecipeDetail(recipesData);
