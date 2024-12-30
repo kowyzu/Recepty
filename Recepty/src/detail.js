@@ -1,34 +1,54 @@
 console.log("hello from JS detail");
 import { fetchData } from "./utils";
 
-async function displayRecipeIngredients(recipesData, id) {
-  console.log(recipesData);
+async function displayRecipeDetail(recipesData, id) {
+  const introPlaceHolder = document.querySelector(".mainHeader");
   const ingredientsPlaceHolder = document.querySelector(".ingredientList");
-  console.log(ingredientsPlaceHolder);
+  const stepsPlaceHolder = document.querySelector(".stepList");
   let checkboxId = 0;
 
   recipesData.forEach((recipe) => {
     if (recipe.id === id) {
-      console.log(recipe.title);
+      let newIntro = document.createElement("div");
+      newIntro.innerHTML = `
+        <h1 class="detailTitle">${recipe.title}</h1>
+        <img class="detailImg" src="./src/recipes_imgs/recipe_${recipe.id}.webp" alt="${recipe.titel}">
+      `;
+      newIntro.classList.add("detailIntro");
+
+      introPlaceHolder.appendChild(newIntro);
+
       let recipeIngredients = recipe.ingredients;
-      console.log(recipeIngredients);
+      let recipeSteps = recipe.preparation_process;
 
       recipeIngredients.forEach((ingredient) => {
-        let newIngredient = document.createElement("li");
-        //   console.log(recipe.id);
+        if (typeof ingredient === "string") {
+          let newIngredient = document.createElement("li");
 
-        checkboxId = checkboxId + 1;
-        //   console.log(checkboxId);
+          checkboxId = checkboxId + 1;
 
-        newIngredient.innerHTML = `
-        <input class="form-check-input me-1" type="checkbox" value="" id="${checkboxId}CheckboxStretched">
-        <label class="form-check-label stretched-link" for="${checkboxId}CheckboxStretched">${ingredient}</label>
-      `;
+          newIngredient.innerHTML = `
+                        <input class="form-check-input me-1" type="checkbox" value="" id="${checkboxId}CheckboxStretched">
+                        <label class="form-check-label stretched-link" for="${checkboxId}CheckboxStretched">${ingredient}</label>
+                    `;
 
-        newIngredient.classList.add("list-group-item");
-        newIngredient.classList.add("ingredient");
+          newIngredient.classList.add("list-group-item");
+          newIngredient.classList.add("ingredient");
 
-        ingredientsPlaceHolder.appendChild(newIngredient);
+          ingredientsPlaceHolder.appendChild(newIngredient);
+        }
+      });
+
+      recipeSteps.forEach((step) => {
+        let newStep = document.createElement("li");
+
+        newStep.innerHTML = `
+          ${step}
+        `;
+
+        newStep.classList.add("list-group-item");
+
+        stepsPlaceHolder.appendChild(newStep);
       });
     }
   });
@@ -45,4 +65,4 @@ let myParam = urlParams.get("id");
 myParam = Number(myParam);
 console.log(myParam);
 
-await displayRecipeIngredients(recipesData, myParam);
+await displayRecipeDetail(recipesData, myParam);

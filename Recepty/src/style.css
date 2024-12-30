@@ -1,7 +1,7 @@
 body {
   padding: 4rem;
   margin: 0rem auto;
-  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  font-family:"Roboto", 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
   background-color:#E5D9F2 ;
 }
 
@@ -46,126 +46,6 @@ header {
   --bs-dropdown-link-hover-bg: #cdc1ff82;
 }
 
-
-
-.addRecipe{
-  display: grid;
-  grid-template-columns: 1fr 1fr ;
-  
-}
-
-
- 
-.addRecipeInput, .buttonAddTitle, .buttonAddIngredient {
-  height: 3rem;
-  padding: 0.3rem;
-  /* width: 20rem; */
-  font-size: 1.3rem;
-  font-weight: bolder;
-}
-
-.buttonAddTitle, .buttonAddIngredient {
-  height: 60.06px;
-}
-
-/* .buttonAddIngredient, .buttonAddTitle {
-  width: 7rem;
-  height: 3rem;
-} */
-
-
-
-
-
-.saveRecipeButton {
-  background-color: violet;
-  height: 5rem;
-  width: 15rem;
-  border-radius: 6px 6px 6px 6px;
-  -moz-border-radius: 6px 6px 6px 6px;
-  -webkit-border-radius: 6px 6px 6px 6px;
-  border: 0px solid #000000;
-}
-
-.writtenLists {
-  display: grid;
-  grid-template-columns: 1fr 1fr ;
-  gap: 2rem;
-
-}
-
-li {
-  padding: 0.3rem;
-}
-
-
-.stepInputWrapper {
-  display: grid;
-  grid-template-columns: 1fr 1fr ;
-  gap: 0.3rem;
-  align-items: center;
- 
-}
-
-.addRecipeTextArea {
-  height: 8rem;
-  font-size: 1.3rem;
-  font-weight: bolder;
-}
-
-.buttonAddStep {
-  height: 4rem;
-  width: 8rem;
-  padding: 0.3rem;
-  /* width: 20rem; */
-  font-size: 1.3rem;
-  font-weight: bolder;
-}
-
-footer {
-    display: grid;
-    /* align-items: center; */
-    justify-items: center;
-    padding: 3rem;
-    margin: 0 auto;
-    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-
-}
-.saveRecipeButton:hover {
-  background-color: blueviolet;
-  cursor: pointer;
-}
-
-button:hover {
-  cursor: pointer;
-}
-
-.deleteButton {
-  border-radius: 50%;
-}
-
-
-
-.recipeDetails {
-  display: grid;
-  grid-template-columns: 1fr 1fr ; 
-  width: 200px;
-  justify-items: center;
-  padding: 0.3rem;  
-}
-
-.recipeDetails p {
-  border: 2px solid pink;
-  padding: 0.3rem;
-  border-radius: 10px 10px 10px 10px;
--moz-border-radius: 10px 10px 10px 10px;
--webkit-border-radius: 10px 10px 10px 10px;
-
-}
-
-
-
-
 .recipesList {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr; 
@@ -182,6 +62,28 @@ button:hover {
 
 .recipeName {
   min-height: 50px;
+  font-size: 1.3rem;
+  font-weight: 600;
+}
+
+.recipeDetails {
+  display: grid;
+  grid-template-columns: 1fr 1fr ; 
+  width: 200px;
+  justify-items: center;
+  padding: 0.3rem;  
+}
+
+.recipeDetails p {
+  border: 2px solid pink;
+  padding: 0.3rem;
+  border-radius: 10px 10px 10px 10px;
+  -moz-border-radius: 10px 10px 10px 10px;
+  -webkit-border-radius: 10px 10px 10px 10px;
+  font-weight: normal;
+  color: #000000;
+  font-size: 1.2;
+
 }
 
 .btn-primary {
@@ -199,14 +101,7 @@ button:hover {
   --bs-btn-disabled-color: #fff;
   --bs-btn-disabled-bg: #a294f9;
   --bs-btn-disabled-border-color: #db42cd;
-
 }
-
-
-
-
-
-
 
 @media screen and (min-width: 500px) {
   .recipesList {
@@ -238,6 +133,19 @@ button:hover {
 
 /* detail CSS */
 
+@media screen and (min-width: 1900px) {
+  .detail-body {
+    max-width: 60%;
+    /* background-image: url(spoon.svg);
+    
+    background-position: 5%; 
+    background-size: 10% */
+   
+
+  }
+}
+
+
 h1.detailTitle  {
   margin-top: 2rem;
 }
@@ -262,6 +170,8 @@ h1.detailTitle  {
 h1.detailTitle  {
   margin-top: 1.5rem;
   justify-self: left;
+  font-family: "Roboto", serif;
+  font-weight: 900;
 }
 
 
@@ -280,13 +190,126 @@ h1.detailTitle  {
   border-top: 3px dashed #500073;
 }
 
-.form-check-input:checked {
-  background-color: #500073;
-  border-color: #500073;
-}
+
 
 .form-check-input:focus {
   border-color: #500073;
   outline: 0;
   box-shadow: 0 0 0 .25rem #a194f96c;
 }
+
+ol {
+  font-family: "Roboto", serif;
+  font-weight: 400;
+  font-size: larger;
+
+}
+
+ul {
+  font-family: "Roboto", serif;
+  font-weight: 400;
+  font-size: larger;
+}
+
+
+
+
+
+
+/* /////addreceipt - zaklady//// */
+/* 
+.addRecipe{
+  display: grid;
+  grid-template-columns: 1fr 1fr ;
+  
+}
+
+
+ 
+.addRecipeInput, .buttonAddTitle, .buttonAddIngredient {
+  height: 3rem;
+  padding: 0.3rem;
+  width: 20rem;
+  font-size: 1.3rem;
+  font-weight: bolder;
+}
+
+.buttonAddTitle, .buttonAddIngredient {
+  height: 60.06px;
+} */
+
+/* .buttonAddIngredient, .buttonAddTitle {
+  width: 7rem;
+  height: 3rem;
+} */
+
+
+
+
+
+/* .saveRecipeButton {
+  background-color: violet;
+  height: 5rem;
+  width: 15rem;
+  border-radius: 6px 6px 6px 6px;
+  -moz-border-radius: 6px 6px 6px 6px;
+  -webkit-border-radius: 6px 6px 6px 6px;
+  border: 0px solid #000000;
+} */
+
+/* .writtenLists {
+  display: grid;
+  grid-template-columns: 1fr 1fr ;
+  gap: 2rem;
+
+}
+
+li {
+  padding: 0.3rem;
+}
+
+
+.stepInputWrapper {
+  display: grid;
+  grid-template-columns: 1fr 1fr ;
+  gap: 0.3rem;
+  align-items: center;
+ 
+} */
+
+/* .addRecipeTextArea {
+  height: 8rem;
+  font-size: 1.3rem;
+  font-weight: bolder;
+} */
+
+/* .buttonAddStep {
+  height: 4rem;
+  width: 8rem;
+  padding: 0.3rem;
+  width: 20rem;
+  font-size: 1.3rem;
+  font-weight: bolder;
+} */
+
+/* footer {
+    display: grid;
+    align-items: center;
+    justify-items: center;
+    padding: 3rem;
+    margin: 0 auto;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+
+}
+.saveRecipeButton:hover {
+  background-color: blueviolet;
+  cursor: pointer;
+}
+
+button:hover {
+  cursor: pointer;
+}
+
+.deleteButton {
+  border-radius: 50%;
+} */
