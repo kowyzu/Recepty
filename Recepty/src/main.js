@@ -26,17 +26,12 @@ async function displayRecipes(recipesData) {
               ${recipe.title}
             </h5>
 
-              <div class="recipeDetails">
-
-                <p class="recipeCategory">
-                  ${recipe.category}
-                </p>
-
-                <p class="recipeTime">
-                  ${recipe.time} 
-                </p>
-
-
+              <div class="infoBadges">
+                <span class="badge rounded-pill text-bg-info">category</span>
+                <span class="badge rounded-pill text-bg-info">time</span>
+                <span class="badge rounded-pill text-bg-info">degrees</span>
+                <span class="badge rounded-pill text-bg-info">sub_category</span>
+                <span class="badge rounded-pill text-bg-info">special_category</span>
               </div>
 
           <a id="${recipe.id}" href="http://localhost:5173/detail.html?id=${recipe.id}" class="btn btn-primary explodingBtn">Mrkni na recept!</a>
@@ -44,12 +39,25 @@ async function displayRecipes(recipesData) {
           </div>
 
         `;
-      console.log(newRecipe);
 
       recipesPlaceHolder.appendChild(newRecipe);
     }
   });
 }
+
+// async function displayInfoBadges(recipesData) {
+//   const badgesPlaceHolders = document.querySelectorAll(".infoBadges");
+//   console.log(badgesPlaceHolders);
+
+//   badgesPlaceHolders.forEach((badgesPlaceHolder) => {
+//     console.log(badgesPlaceHolder);
+//     recipesData.forEach((recipe) => {
+//       let newBadge = document.createElement("span");
+//       newBadge.innerText = "hello";
+//       badgesPlaceHolder.appendChild(newBadge)
+//     });
+//   });
+// }
 
 async function clickExplosion() {
   const explodingButtons = document.querySelectorAll(".explodingBtn");
@@ -82,5 +90,7 @@ let recipesData = await fetchData();
 console.log(recipesData);
 
 await displayRecipes(recipesData);
+
+// await displayInfoBadges(recipesData);
 
 // await clickExplosion();
