@@ -11,6 +11,7 @@ import { fetchData } from "./utils";
 
 async function displayRecipes(recipesData) {
   const recipesPlaceHolder = document.querySelector(".recipesList");
+
   recipesData.forEach((recipe) => {
     if (recipe.is_sub_recipe === false) {
       let newRecipe = document.createElement("div");

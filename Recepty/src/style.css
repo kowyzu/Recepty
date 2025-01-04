@@ -103,6 +103,17 @@ header {
   --bs-btn-disabled-border-color: #db42cd;
 }
 
+@media screen and (max-width: 390px) {
+
+  .recipesList {
+    display: grid;
+    grid-template-columns: 1fr; 
+    gap: 1rem;
+    border: none;
+  }
+ 
+}
+
 @media screen and (min-width: 500px) {
   .recipesList {
     display: grid;
@@ -116,6 +127,15 @@ header {
   .recipesList {
     display: grid;
     grid-template-columns: 1fr 1fr; 
+    gap: 4rem;
+    border: none;
+  }
+}
+
+@media screen and (min-width: 992px) {
+  .recipesList {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr; 
     gap: 4rem;
     border: none;
   }
@@ -178,7 +198,7 @@ h1.detailTitle  {
 
 .detailImg {
 
-  max-width: 15rem;
+  max-width: 30%;
   border-radius: 19px 19px 19px 19px;
   -moz-border-radius: 19px 19px 19px 19px;
   -webkit-border-radius: 19px 19px 19px 19px;
