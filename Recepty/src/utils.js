@@ -9,20 +9,37 @@ const supabaseKey =
 // Initialize Supabase client
 const supabase = createClient(supabaseUrl, supabaseKey);
 
-export async function fetchData() {
-  const { data, error } = await supabase.from("Receipts").select();
+export async function fetchData(search) {
+  if (search === null) {
+    const { data, error } = await supabase.from("Recipes").select();
 
-  if (error) {
-    console.error("Error fetching data:", error);
-    return;
+    if (error) {
+      console.error("Error fetching data:", error);
+      return;
+    }
+
+    console.log("Fetched data:", data);
+    recipesData = data;
+    return recipesData;
+  } else {
+    const { data, error } = await supabase
+      .from("Recipes")
+      .select()
+      .ilike("title", "%" + search + "%");
+
+    if (error) {
+      console.error("Error fetching data:", error);
+      return;
+    }
+
+    console.log("Fetched data:", data);
+    recipesData = data;
+    return recipesData;
   }
-
-  console.log("Fetched data:", data);
-  recipesData = data;
-  return recipesData;
 }
 
 //////////////////////
 ////Main Programm////
 ////////////////////
 let recipesData = [];
+let recipesFilteredData = [];
