@@ -4,7 +4,7 @@ import JSConfetti from "js-confetti";
 
 const jsConfetti = new JSConfetti();
 
-import { fetchData } from "./utils";
+import { fetchData, fetchFilteredData } from "./utils";
 
 //Functions//
 ////////////
@@ -21,13 +21,17 @@ function displayRecipes(recipesData) {
       let badges = displayBadges(recipe);
 
       newRecipe.innerHTML = `
-          <img src="./src/recipes_imgs/recipe_${recipe.id}.webp" class="card-img-top" alt="${recipe.title}">
+          <a href="http://localhost:5173/detail.html?id=${recipe.id}">
+            <img src="./src/recipes_imgs/recipe_${recipe.id}.webp" class="card-img-top" alt="${recipe.title}">
+          </a>
                 
           <div class="card-body">
 
-          <h5 class="recipeName" class="card-title">
-            ${recipe.title}
-          </h5>
+          <a href="http://localhost:5173/detail.html?id=${recipe.id}" class="recipeNameLink">
+            <h5 class="recipeName" class="card-title">
+              ${recipe.title}
+            </h5>
+          </a>
 
           ${badges}
 
@@ -52,23 +56,23 @@ function displayBadges(recipe) {
 
   `;
   if (recipe.category !== null) {
-    badges += `<span class="badge rounded-pill text-bg-info">${recipe.category}</span>`;
+    badges += `<span class="badge rounded-pill infoBadge">${recipe.category}</span>`;
   }
 
   if (recipe.sub_category !== null) {
-    badges += `<span class="badge rounded-pill text-bg-info">${recipe.sub_category}</span>`;
+    badges += `<span class="badge rounded-pill infoBadge">${recipe.sub_category}</span>`;
   }
 
   if (recipe.special_category !== null) {
-    badges += `<span class="badge rounded-pill text-bg-info">${recipe.special_category}</span>`;
+    badges += `<span class="badge rounded-pill infoBadge">${recipe.special_category}</span>`;
   }
 
   if (recipe.time !== null) {
-    badges += `<span class="badge rounded-pill text-bg-info">${recipe.time}</span>`;
+    badges += `<span class="badge rounded-pill infoBadge">${recipe.time}</span>`;
   }
 
   if (recipe.degrees !== null) {
-    badges += `<span class="badge rounded-pill text-bg-info">${recipe.degrees}</span>`;
+    badges += `<span class="badge rounded-pill infoBadge">${recipe.degrees}</span>`;
   }
 
   badges += `
@@ -92,22 +96,22 @@ function handleSearch() {
     cleanRecipesList();
 
     if (input.value === "") {
-      recipesData = await fetchData(null);
+      recipesData = await fetchData();
       displayRecipes(recipesData);
     } else if (input.value !== "") {
       console.log("je tam neco");
-      recipesData = await fetchData(input.value);
+      recipesData = await fetchFilteredData(input.value);
       displayRecipes(recipesData);
       console.log(recipesData);
     }
   });
 
-  input.addEventListener("click", async (event) => {
+  input.addEventListener("input", async (event) => {
     console.log(event);
 
-    if (input.value === "") {
+    if (event.target.value === "") {
       cleanRecipesList();
-      recipesData = await fetchData(null);
+      recipesData = await fetchData();
       displayRecipes(recipesData);
     }
   });
@@ -147,7 +151,7 @@ function cleanRecipesList() {
 //Main Programm //
 /////////////////
 
-let recipesData = await fetchData(null);
+let recipesData = await fetchData();
 
 console.log(recipesData);
 

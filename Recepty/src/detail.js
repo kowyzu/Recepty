@@ -2,16 +2,31 @@ console.log("hello from JS detail");
 import { fetchData } from "./utils";
 
 async function displayRecipeDetail(recipesData, id) {
-  const introPlaceHolder = document.querySelector(".mainHeader");
+  const introPlaceHolder = document.querySelector(".detailHeader");
   const ingredientsPlaceHolder = document.querySelector(".ingredientList");
   const stepsPlaceHolder = document.querySelector(".stepList");
+  // const navPlaceholder = document.querySelector(".mheader");
   let checkboxId = 0;
 
   recipesData.forEach((recipe) => {
     if (recipe.id === id) {
-      let newIntro = document.createElement("div");
-      newIntro.innerHTML = `
+      let newNav = document.createElement("nav");
+
+      newNav.innerHTML = `
+        <a class="navbar-brand back-arrow detailBackArrow" href="/"><i class="fa-solid fa-arrow-left"></i></a>
         <h1 class="detailTitle">${recipe.title}</h1>
+      `;
+
+      introPlaceHolder.appendChild(newNav);
+
+      newNav.classList.add("navbar");
+      newNav.classList.add("navbar-expand-lg");
+      newNav.classList.add("bg-body-tertiary");
+      newNav.classList.add("detailNav");
+
+      let newIntro = document.createElement("div");
+
+      newIntro.innerHTML = `
         <img class="detailImg" src="./src/recipes_imgs/recipe_${recipe.id}.webp" alt="${recipe.titel}">
       `;
       newIntro.classList.add("detailIntro");

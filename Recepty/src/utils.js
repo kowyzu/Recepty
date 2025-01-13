@@ -9,33 +9,33 @@ const supabaseKey =
 // Initialize Supabase client
 const supabase = createClient(supabaseUrl, supabaseKey);
 
-export async function fetchData(search) {
-  if (search === null) {
-    const { data, error } = await supabase.from("Recipes").select();
+export async function fetchData() {
+  const { data, error } = await supabase.from("Recipes").select();
 
-    if (error) {
-      console.error("Error fetching data:", error);
-      return;
-    }
-
-    console.log("Fetched data:", data);
-    recipesData = data;
-    return recipesData;
-  } else {
-    const { data, error } = await supabase
-      .from("Recipes")
-      .select()
-      .ilike("title", "%" + search + "%");
-
-    if (error) {
-      console.error("Error fetching data:", error);
-      return;
-    }
-
-    console.log("Fetched data:", data);
-    recipesData = data;
-    return recipesData;
+  if (error) {
+    console.error("Error fetching data:", error);
+    return;
   }
+
+  console.log("Fetched data:", data);
+  recipesData = data;
+  return recipesData;
+}
+
+export async function fetchFilteredData(search) {
+  const { data, error } = await supabase
+    .from("Recipes")
+    .select()
+    .ilike("title", "%" + search + "%");
+
+  if (error) {
+    console.error("Error fetching data:", error);
+    return;
+  }
+
+  console.log("Fetched data:", data);
+  recipesData = data;
+  return recipesData;
 }
 
 //////////////////////

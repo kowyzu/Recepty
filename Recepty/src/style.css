@@ -46,6 +46,10 @@ header {
   --bs-dropdown-link-hover-bg: #cdc1ff82;
 }
 
+/* input[type="search"]::-webkit-search-cancel-button {
+  display: none;
+} */
+
 .recipesList {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr; 
@@ -60,18 +64,44 @@ header {
   background-color: #F5EFFF;
 }
 
+.card-img-top {
+	transition: .5s all ease-in-out;
+}
+
+.card-img-top:hover {
+  transform: scale(.95);
+	filter: brightness(85%);
+  border-radius: 1%;
+}
+
 .recipeName {
   min-height: 50px;
   font-size: 1.3rem;
   font-weight: 600;
 }
 
-.recipeDetails {
-  display: grid;
-  grid-template-columns: 1fr 1fr ; 
-  width: 200px;
-  justify-items: center;
-  padding: 0.3rem;  
+.recipeNameLink {
+  color: black;
+  font-style: normal;
+  text-decoration: none;
+}
+
+.recipeNameLink:hover {
+  color: #69247C;
+}
+
+.infoBadge {
+  display: inline-block;
+  margin: 0.2rem 0.2rem;
+  color: #000 !important;
+  font-size: 1rem;
+  background-color: rgba(255, 192, 203, 0.493) !important;
+
+}
+
+.infoBadges {
+  margin-bottom: 1rem;
+  
 }
 
 .recipeDetails p {
@@ -161,14 +191,39 @@ header {
     
     background-position: 5%; 
     background-size: 10% */
-   
-
   }
 }
 
+.detailNav {
+  margin-bottom: 1rem;
+  justify-content: flex-start;
+}
+
+.detailBackArrow {
+  margin: 0 1rem;
+}
+
+.detailBackArrow:hover {
+  color: #69247C;
+}
 
 h1.detailTitle  {
-  margin-top: 2rem;
+  justify-self: left;
+  font-family: "Roboto", serif;
+  font-weight: 900;
+  margin: 0;
+}
+
+.detailIntro {
+  justify-items: left;
+}
+
+.detailImg {
+  max-width: 30%;
+  border-radius: 19px 19px 19px 19px;
+  -moz-border-radius: 19px 19px 19px 19px;
+  -webkit-border-radius: 19px 19px 19px 19px;
+  border: 0px solid #000000;
 }
 
 .ingredientList  {
@@ -178,40 +233,16 @@ h1.detailTitle  {
   /* max-width: 50%; */
 }
 
-.stepList {
-  margin-top: 1.5rem;
-  --bs-list-group-bg: #cdc1ff4f;
-  --bs-list-group-border-color: #A294F9;
-}
-
-.detailIntro {
-  justify-items: left;
-}
-
-h1.detailTitle  {
-  margin-top: 1.5rem;
-  justify-self: left;
-  font-family: "Roboto", serif;
-  font-weight: 900;
-}
-
-
-
-.detailImg {
-
-  max-width: 30%;
-  border-radius: 19px 19px 19px 19px;
-  -moz-border-radius: 19px 19px 19px 19px;
-  -webkit-border-radius: 19px 19px 19px 19px;
-  border: 0px solid #000000;
-}
-
 .dashed {
   margin: 0;
   border-top: 3px dashed #500073;
 }
 
-
+.stepList {
+  margin-top: 1.5rem;
+  --bs-list-group-bg: #cdc1ff4f;
+  --bs-list-group-border-color: #A294F9;
+}
 
 .form-check-input:focus {
   border-color: #500073;
