@@ -14,9 +14,14 @@ header {
   background-color: #cdc1ff82 !important;
 }
 
+.spoonIco {
+  width: 5%;
+  padding-bottom: 0.2rem;
+  padding-right: 0.2rem;
+}
+
 .form-control {
   border-color: pink;
-
 }
 
 .form-control:focus {
@@ -133,6 +138,18 @@ header {
   --bs-btn-disabled-border-color: #db42cd;
 }
 
+.signingWrapper {
+  display: flex; /* Enables flexbox */
+  justify-content: center; /* Centers horizontally */
+  align-items: center; /* Centers vertically */
+  height: 10%;
+  margin-top: 2rem;
+}
+
+.signSVG {
+  height: 4rem;
+}
+
 @media screen and (max-width: 390px) {
 
   .recipesList {
@@ -179,6 +196,7 @@ header {
     border: none;
   }
 }
+
 
 /* /////////// */
 /* detail CSS */

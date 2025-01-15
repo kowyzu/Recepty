@@ -26,7 +26,7 @@ export async function fetchFilteredData(search) {
   const { data, error } = await supabase
     .from("Recipes")
     .select()
-    .ilike("title", "%" + search + "%");
+    .or(`title.ilike.%${search}%,category.ilike.%${search}%`);
 
   if (error) {
     console.error("Error fetching data:", error);
@@ -36,6 +36,14 @@ export async function fetchFilteredData(search) {
   console.log("Fetched data:", data);
   recipesData = data;
   return recipesData;
+}
+
+//TODO: dokoncit tuto funkci, musim tam pridat povinna pole, zatim jsem je zvolila pouze nahodne
+
+export async function insertRow(recipeTitle) {
+  const { data, error } = await supabase
+    .from("Recipes")
+    .insert([{ title: recipeTitle, ingredients: "nic", is_sub_recipe: "NO" }]);
 }
 
 //////////////////////

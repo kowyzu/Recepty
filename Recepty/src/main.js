@@ -109,6 +109,7 @@ function handleSearch() {
   input.addEventListener("input", async (event) => {
     console.log(event);
 
+    //display all recipes after using cross in input
     if (event.target.value === "") {
       cleanRecipesList();
       recipesData = await fetchData();
@@ -148,7 +149,7 @@ function cleanRecipesList() {
 // }
 
 //////////////////
-//Main Programm //
+//Main Program //
 /////////////////
 
 let recipesData = await fetchData();

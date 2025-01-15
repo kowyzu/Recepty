@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="src/spoon.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="src/style.css">
+    <script defer type="module" src="/src/addRecipes.js"></script>
+    <title>Vite App</title>
+  </head>
+  <body>
+    <header>
+
+    </header>
+
+    <main>
+
+      <div class="addTitleWrapper"></div>
+
+        <form  class="addTitle" action="">
+          <input class="addTitleInput" type="text" name="title" placeholder="napiš název receptu">
+          <button class="addTitleButton">přidej název</button>
+        </form>
+
+        <ul class="addedTitleList">
+
+          <!-- <li class="addedTitle">
+        
+          </li> -->
+
+        </ul>
+
+      </div>
+
+      <div class="addIngredientWrapper">
+        <form  class="addIngredient" action="">
+          <input class="addIngredientInput" type="text" name="ingredients" placeholder="přidej ingredience">
+          <button class="buttonAddIngredient">přidej ingredienci</button>
+        </form>
+
+          <ul class="addedIngredientsList">
+
+            <!-- <li class="addedIngredient">
+              jello
+              <button class="deleteButton">X</button>
+            </li> -->
+
+          </ul>
+  
+      </div>
+
+      <div class="addStepWrapper">
+
+        <form  class="addStep" action="">
+
+            <textarea class="addStepTextArea" name="steps" id="" placeholder="popiš postup"></textarea>
+            <button class="buttonAddStep">přidej krok</button>
+          
+        </form>
+
+   
+        <ol class="addedStepsList">
+
+          <!-- <li class="addedStep">
+            blik
+            <button class="deleteButton">X</button>
+          </li> -->
+
+        </ol>
+
+      </div>
+
+      
+
+    </main>
+
+    <footer>
+      <button class="saveRecipeButton">Ulož svůj nový recept</button>
+    </footer>
+
+
+
+  </body>
+</html>
