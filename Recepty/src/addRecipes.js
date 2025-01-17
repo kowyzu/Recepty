@@ -52,9 +52,19 @@ function deleteAddedValue() {
 }
 
 function postRecipe() {
-  let titleToPost = document.querySelector(".addedTitle span").innerHTML;
+  //   let titleToPost = document.querySelector(".addedTitle span").innerHTML;
+  let ingredientsToPost = document.querySelectorAll(".addedIngredient span");
 
-  insertRow(titleToPost);
+  let arrayOfIngredients = [];
+
+  ingredientsToPost.forEach((ingredientToPost) => {
+    arrayOfIngredients.push(ingredientToPost.innerHTML); // TODO zde pokracovat, musim pridat jeste postup
+  });
+
+  console.log(arrayOfIngredients);
+  console.log(ingredientsToPost);
+
+  //   insertRow(titleToPost, ingredientsToPost);
 }
 
 /////////////////

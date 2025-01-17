@@ -22,7 +22,7 @@ function displayRecipes(recipesData) {
 
       newRecipe.innerHTML = `
           <a href="http://localhost:5173/detail.html?id=${recipe.id}">
-            <img src="./src/recipes_imgs/recipe_${recipe.id}.webp" class="card-img-top" alt="${recipe.title}">
+            <img src="./src/recipes_imgs/recipe_${recipe.id}.webp" class="card-img-top" alt="${recipe.title}" onerror="this.onerror=null; this.src='./src/recipes_imgs/default.webp'">
           </a>
                 
           <div class="card-body">

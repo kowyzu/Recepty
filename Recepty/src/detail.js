@@ -19,10 +19,12 @@ async function displayRecipeDetail(recipesData, id) {
 
       introPlaceHolder.appendChild(newNav);
 
-      newNav.classList.add("navbar");
-      newNav.classList.add("navbar-expand-lg");
-      newNav.classList.add("bg-body-tertiary");
-      newNav.classList.add("detailNav");
+      newNav.classList.add(
+        "navbar",
+        "navbar-expand-lg",
+        "bg-body-tertiary",
+        "detailNav"
+      );
 
       let newIntro = document.createElement("div");
 
@@ -47,8 +49,7 @@ async function displayRecipeDetail(recipesData, id) {
                         <label class="form-check-label stretched-link" for="${checkboxId}CheckboxStretched">${ingredient}</label>
                     `;
 
-          newIngredient.classList.add("list-group-item");
-          newIngredient.classList.add("ingredient");
+          newIngredient.classList.add("list-group-item", "ingredient");
 
           ingredientsPlaceHolder.appendChild(newIngredient);
         }

@@ -205,10 +205,6 @@ header {
 @media screen and (min-width: 1900px) {
   .detail-body {
     max-width: 60%;
-    /* background-image: url(spoon.svg);
-    
-    background-position: 5%; 
-    background-size: 10% */
   }
 }
 
@@ -219,6 +215,7 @@ header {
 
 .detailBackArrow {
   margin: 0 1rem;
+  color: #000;
 }
 
 .detailBackArrow:hover {
@@ -285,6 +282,21 @@ ul {
   font-weight: 400;
   font-size: larger;
 }
+
+/* /////////// */
+/* add Recipe CSS */
+/* ///////// */
+
+.addRecipeNav {
+  padding: 8px 0;
+  height: 41.109px;
+  display: flex;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+
+}
+
+
 
 
 
