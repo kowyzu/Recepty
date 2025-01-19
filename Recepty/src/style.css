@@ -288,12 +288,22 @@ ul {
 /* ///////// */
 
 .addRecipeNav {
-  padding: 8px 0;
-  height: 41.109px;
-  display: flex;
-  grid-template-columns: 1fr 1fr;
-  align-items: center;
+  
+  justify-content: flex-start;
 
+}
+
+.saveRecipeButton {
+  margin-top: 2rem;
+}
+
+.saveRecipeButton:hover {
+  --bs-btn-hover-color: #300442;
+  --bs-btn-active-color: #6a168b;
+}
+
+.selectTimeForm {
+  margin-top: 1rem;
 }
 
 

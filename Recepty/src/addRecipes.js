@@ -1,7 +1,8 @@
-console.log("uh hello world agaign");
+//console.log("uh hello world agaign");
 
 import { insertRow } from "./utils";
 
+// function that wil create new li elements with added values
 function addNewSmthing(addSmthingForm, input, placeHolder, newClass) {
   addSmthingForm.addEventListener("submit", (event) => {
     event.preventDefault();
@@ -41,30 +42,67 @@ function addNewSmthing(addSmthingForm, input, placeHolder, newClass) {
   }
 }
 
+//function that will get value from select form
+function selectSmthing(selectForm) {
+  const indexOfSelection = selectForm.selectedIndex;
+  const selectedValue = selectForm[indexOfSelection].innerText;
+
+  if (indexOfSelection !== 0) {
+    return selectedValue;
+  } else {
+    return null;
+  }
+}
+
+// function that will delete value in added li element after click on cross button
 function deleteAddedValue() {
   let deleteButtons = document.querySelectorAll(".deleteButton");
 
   deleteButtons.forEach((deleteButton) => {
-    deleteButton.addEventListener("click", (event) => {
+    deleteButton.addEventListener("click", () => {
       deleteButton.parentElement.remove();
     });
   });
 }
 
+//function that will post new recipe to supabase
 function postRecipe() {
-  //   let titleToPost = document.querySelector(".addedTitle span").innerHTML;
+  let titleToPost = document.querySelector(".addedTitle span");
   let ingredientsToPost = document.querySelectorAll(".addedIngredient span");
+  let stepsToPost = document.querySelectorAll(".addedStep span");
 
-  let arrayOfIngredients = [];
+  if (
+    titleToPost !== null &&
+    ingredientsToPost.length !== 0 &&
+    stepsToPost.length !== 0
+  ) {
+    titleToPost = titleToPost.innerText;
+    let arrayOfIngredients = arrayCompilator(ingredientsToPost);
+    let arrayOfSteps = arrayCompilator(stepsToPost);
+  } else {
+    console.log("chybi hodnota");
+  }
 
-  ingredientsToPost.forEach((ingredientToPost) => {
-    arrayOfIngredients.push(ingredientToPost.innerHTML); // TODO zde pokracovat, musim pridat jeste postup
+  let selectCategoryForm = document.querySelector(".selectCategoryForm");
+  let selectTimeForm = document.querySelector(".selectTimeForm");
+
+  let category = selectSmthing(selectCategoryForm);
+  console.log(category);
+  let time = selectSmthing(selectTimeForm);
+  console.log(time);
+
+  //   insertRow(titleToPost, arrayOfIngredients, arrayOfSteps);
+}
+
+//function that will compile new array
+function arrayCompilator(nodeList) {
+  let arrayOfSmthing = [];
+
+  nodeList.forEach((node) => {
+    arrayOfSmthing.push(node.innerText.trim());
   });
 
-  console.log(arrayOfIngredients);
-  console.log(ingredientsToPost);
-
-  //   insertRow(titleToPost, ingredientsToPost);
+  return arrayOfSmthing;
 }
 
 /////////////////

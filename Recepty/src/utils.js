@@ -43,7 +43,9 @@ export async function fetchFilteredData(search) {
 export async function insertRow(recipeTitle) {
   const { data, error } = await supabase
     .from("Recipes")
-    .insert([{ title: recipeTitle, ingredients: "nic", is_sub_recipe: "NO" }]);
+    .insert([
+      { title: recipeTitle, ingredients: "nic", is_sub_recipe: "false" },
+    ]);
 }
 
 //////////////////////
