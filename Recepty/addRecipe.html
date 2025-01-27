@@ -24,9 +24,13 @@
 
       <div class="addTitleWrapper"></div>
 
+
+
         <form  class="addTitle" action="">
-          <input class="addTitleInput" type="text" name="title" placeholder="napiš název receptu">
-          <button class="addTitleButton">přidej název</button>
+          <div class="input-group mb-3">
+            <input type="text" name="title" class="form-control addTitleInput" placeholder="Napiš název receptu" >
+            <!-- <button class="btn btn-outline-secondary addTitleButton" >Přidej název</button> -->
+          </div>
         </form>
 
         <ul class="addedTitleList">
@@ -36,12 +40,21 @@
       </div>
 
       <div class="addIngredientWrapper">
-        <form  class="addIngredient" action="">
-          <input class="addIngredientInput" type="text" name="ingredients" placeholder="přidej ingredience">
-          <button class="buttonAddIngredient">přidej ingredienci</button>
-        </form>
+        <h2>Přidej ingredience</h2>
+       
+
+
+        <button class="btn btn-outline-secondary addIngredientButton" >Přidej ingredienci</button>
 
           <ul class="addedIngredientsList">
+
+            <form  class="addIngredient" action="">
+              <div class="input-group mb-3">
+                <input type="text" name="ingredients" class="form-control addIngredientInput" placeholder="Přidej ingredience" >
+      
+              </div>
+            </form>
+
 
           </ul>
   
@@ -51,8 +64,10 @@
 
         <form  class="addStep" action="">
 
-            <textarea class="addStepTextArea" name="steps" id="" placeholder="popiš postup"></textarea>
-            <button class="buttonAddStep">přidej krok</button>
+          <div class="input-group mb-3">
+            <textarea class="form-control addStepTextArea" name="steps" placeholder="Popiš postup"></textarea>
+            <button class="btn btn-outline-secondary addStepButton" >Přidej krok</button>
+          </div>
           
         </form>
 

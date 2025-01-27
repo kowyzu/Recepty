@@ -291,7 +291,14 @@ ul {
   
   justify-content: flex-start;
 
+
+
 }
+
+.addTitleButton, .addIngredientButton, .addStepButton {
+  min-width: 150px;
+}
+
 
 .saveRecipeButton {
   margin-top: 2rem;
@@ -305,6 +312,11 @@ ul {
 .selectTimeForm {
   margin-top: 1rem;
 }
+
+/* .deleteButton {
+  border-radius: 50%;
+} */
+
 
 
 

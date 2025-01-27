@@ -2,33 +2,67 @@
 
 import { insertRow } from "./utils";
 
+//function for adding new ingredients in form of inputs
+function addIngredient() {
+  let addIngredientButton = document.querySelector(".addIngredientButton");
+  let addIngredientForm = document.querySelector(".addIngredient");
+  let ingredientInput = document.querySelector(".addIngredientInput");
+  const ingredientPlaceHolder = document.querySelector(".addedIngredientsList");
+  let newIngredientClass = "addedIngredient";
+
+  addIngredientButton.addEventListener("click", (event) => {
+    console.log(ingredientInput.value);
+
+    let newIngredient = document.createElement("li");
+
+    newIngredient.innerHTML = `
+    <div class="input-group mb-3">
+        <input type="text" name="addedIngredient" class="form-control addIngredientInput" value="${ingredientInput.value}"></input>
+        <button class="deleteButton btn btn-outline-secondary addIngredientButton">X</button>
+    </div>
+  `;
+
+    newIngredient.classList.add(newIngredientClass);
+
+    ingredientPlaceHolder.appendChild(newIngredient);
+
+    ingredientInput.value = "";
+
+    deleteAddedValue();
+  });
+}
+
 // function that wil create new li elements with added values
 function addNewSmthing(addSmthingForm, input, placeHolder, newClass) {
   addSmthingForm.addEventListener("submit", (event) => {
     event.preventDefault();
 
-    if (
-      addSmthingForm.className === "addTitle" &&
-      placeHolder.childElementCount === 1
-    ) {
-      alert(
-        "Název může mít jen jednu hodnotu. Co je moc, to je příliš - i v kuchyni!"
-      );
-    } else {
-      let newValue = document.createElement("li");
+    console.log(input.value);
 
-      newValue.innerHTML = `
+    if (input.value) {
+      if (
+        addSmthingForm.className === "addTitle" &&
+        placeHolder.childElementCount === 1
+      ) {
+        alert(
+          "Název může mít jen jednu hodnotu. Co je moc, to je příliš - i v kuchyni!"
+        );
+      } else {
+        let newValue = document.createElement("li");
+
+        newValue.innerHTML = `
         <span>${input.value}</span>
         <button class="deleteButton">X</button>
   `;
 
-      newValue.classList.add(newClass);
+        newValue.classList.add(newClass);
 
-      placeHolder.appendChild(newValue);
+        placeHolder.appendChild(newValue);
 
-      input.value = "";
+        input.value = "";
 
-      deleteAddedValue();
+        deleteAddedValue();
+      }
     }
   });
 
@@ -60,23 +94,25 @@ function deleteAddedValue() {
 
   deleteButtons.forEach((deleteButton) => {
     deleteButton.addEventListener("click", () => {
-      deleteButton.parentElement.remove();
+      deleteButton.closest("li").remove();
     });
   });
 }
 
 //function that will post new recipe to supabase
 function postRecipe() {
-  let titleToPost = document.querySelector(".addedTitle span");
+  let titleToPost = document.querySelector(".addTitleInput");
   let ingredientsToPost = document.querySelectorAll(".addedIngredient span");
   let stepsToPost = document.querySelectorAll(".addedStep span");
 
+  console.log(titleToPost.value);
+
   if (
-    titleToPost !== null &&
+    titleToPost.value !== "" &&
     ingredientsToPost.length !== 0 &&
     stepsToPost.length !== 0
   ) {
-    titleToPost = titleToPost.innerText;
+    titleToPost = titleToPost.value;
     let arrayOfIngredients = arrayCompilator(ingredientsToPost);
     let arrayOfSteps = arrayCompilator(stepsToPost);
   } else {
@@ -109,24 +145,18 @@ function arrayCompilator(nodeList) {
 //Main Program//
 ///////////////
 
-let addTitleForm = document.querySelector(".addTitle");
-let titleInput = document.querySelector(".addTitleInput");
-const titlePlaceHolder = document.querySelector(".addedTitleList");
-let newTitleClass = "addedTitle";
+// let addIngredientForm = document.querySelector(".addIngredient");
+// let ingredientInput = document.querySelector(".addIngredientInput");
+// const ingredientPlaceHolder = document.querySelector(".addedIngredientsList");
+// let newIngredientClass = "addedIngredient";
 
-addNewSmthing(addTitleForm, titleInput, titlePlaceHolder, newTitleClass);
-
-let addIngredientForm = document.querySelector(".addIngredient");
-let ingredientInput = document.querySelector(".addIngredientInput");
-const ingredientPlaceHolder = document.querySelector(".addedIngredientsList");
-let newIngredientClass = "addedIngredient";
-
-addNewSmthing(
-  addIngredientForm,
-  ingredientInput,
-  ingredientPlaceHolder,
-  newIngredientClass
-);
+// addNewSmthing(
+//   addIngredientForm,
+//   ingredientInput,
+//   ingredientPlaceHolder,
+//   newIngredientClass
+// );
+addIngredient();
 
 let addStepForm = document.querySelector(".addStep");
 let stepTextArea = document.querySelector(".addStepTextArea");
