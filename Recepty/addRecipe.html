@@ -40,23 +40,38 @@
       </div>
 
       <div class="addIngredientWrapper">
-        <h2>Přidej ingredience</h2>
+        <h2>Ingredience</h2>
+
+        
        
-
-
-        <button class="btn btn-outline-secondary addIngredientButton" >Přidej ingredienci</button>
-
           <ul class="addedIngredientsList">
-
-            <form  class="addIngredient" action="">
+            <li class="firstAddedIngredient">
               <div class="input-group mb-3">
-                <input type="text" name="ingredients" class="form-control addIngredientInput" placeholder="Přidej ingredience" >
-      
+                <input type="text" name="addedIngredient" class="form-control addIngredientInput"/>               
+                <button id="del-1" class="deleteButton btn btn-outline-secondary ">X</button>
               </div>
-            </form>
 
+            </li>
+
+            
+
+            <!-- <li>
+              <form  class="addIngredientForm" action="">
+
+                <div class="input-group mb-3">
+
+                  <input type="text" name="ingredients" class="form-control addIngredientInput" placeholder="Přidej ingredience" >
+
+                </div>
+              </form>
+
+            </li> -->
+          
 
           </ul>
+          <button class="btn btn-outline-secondary addIngredientButton" >Přidej ingredienci</button>
+        
+   
   
       </div>
 
@@ -104,6 +119,8 @@
       <div class="d-grid gap-2">
         <button class="btn btn-primary saveRecipeButton" type="button">Ulož svůj nový recept</button>
       </div>
+
+      <button class="testButt">TEST</button>
     </footer>
 
 

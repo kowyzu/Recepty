@@ -295,7 +295,7 @@ ul {
 
 }
 
-.addTitleButton, .addIngredientButton, .addStepButton {
+.addTitleButton, .addIngredientButton, .addStepButton, .deleteButton  {
   min-width: 150px;
 }
 
@@ -313,9 +313,6 @@ ul {
   margin-top: 1rem;
 }
 
-/* .deleteButton {
-  border-radius: 50%;
-} */
 
 
 

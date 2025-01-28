@@ -1,35 +1,29 @@
 //console.log("uh hello world agaign");
 
 import { insertRow } from "./utils";
+import "animate.css";
 
 //function for adding new ingredients in form of inputs
 function addIngredient() {
-  let addIngredientButton = document.querySelector(".addIngredientButton");
-  let addIngredientForm = document.querySelector(".addIngredient");
   let ingredientInput = document.querySelector(".addIngredientInput");
+
   const ingredientPlaceHolder = document.querySelector(".addedIngredientsList");
   let newIngredientClass = "addedIngredient";
 
-  addIngredientButton.addEventListener("click", (event) => {
-    console.log(ingredientInput.value);
+  let newIngredient = document.createElement("li");
 
-    let newIngredient = document.createElement("li");
-
-    newIngredient.innerHTML = `
+  newIngredient.innerHTML = `
     <div class="input-group mb-3">
-        <input type="text" name="addedIngredient" class="form-control addIngredientInput" value="${ingredientInput.value}"></input>
-        <button class="deleteButton btn btn-outline-secondary addIngredientButton">X</button>
+        <input type="text" name="addedIngredient" class="form-control addIngredientInput" value="${ingredientInput.value}"/>
+        <button class="deleteButton btn btn-outline-secondary">X</button>
     </div>
   `;
 
-    newIngredient.classList.add(newIngredientClass);
+  newIngredient.classList.add(newIngredientClass);
 
-    ingredientPlaceHolder.appendChild(newIngredient);
+  ingredientPlaceHolder.appendChild(newIngredient);
 
-    ingredientInput.value = "";
-
-    deleteAddedValue();
-  });
+  ingredientInput.value = "";
 }
 
 // function that wil create new li elements with added values
@@ -60,8 +54,6 @@ function addNewSmthing(addSmthingForm, input, placeHolder, newClass) {
         placeHolder.appendChild(newValue);
 
         input.value = "";
-
-        deleteAddedValue();
       }
     }
   });
@@ -86,17 +78,6 @@ function selectSmthing(selectForm) {
   } else {
     return null;
   }
-}
-
-// function that will delete value in added li element after click on cross button
-function deleteAddedValue() {
-  let deleteButtons = document.querySelectorAll(".deleteButton");
-
-  deleteButtons.forEach((deleteButton) => {
-    deleteButton.addEventListener("click", () => {
-      deleteButton.closest("li").remove();
-    });
-  });
 }
 
 //function that will post new recipe to supabase
@@ -145,18 +126,42 @@ function arrayCompilator(nodeList) {
 //Main Program//
 ///////////////
 
-// let addIngredientForm = document.querySelector(".addIngredient");
-// let ingredientInput = document.querySelector(".addIngredientInput");
-// const ingredientPlaceHolder = document.querySelector(".addedIngredientsList");
-// let newIngredientClass = "addedIngredient";
+let addIngredientButton = document.querySelector(".addIngredientButton");
 
-// addNewSmthing(
-//   addIngredientForm,
-//   ingredientInput,
-//   ingredientPlaceHolder,
-//   newIngredientClass
-// );
-addIngredient();
+addIngredientButton.addEventListener("click", () => {
+  addIngredient();
+});
+
+let ingredientsUl = document.querySelector(".addedIngredientsList");
+console.log(ingredientsUl);
+
+ingredientsUl.addEventListener("click", (event) => {
+  console.log(event);
+  if (
+    event.target.classList.contains("deleteButton") &&
+    ingredientsUl.childElementCount > 1
+  ) {
+    event.target.closest("li").remove();
+  } else if (event.target.classList.contains("deleteButton")) {
+    event.target.closest("li").classList.add("animate__animated");
+    event.target.closest("li").classList.add("animate__headShake");
+    setTimeout(() => {
+      event.target.closest("li").classList.remove("animate__animated");
+      event.target.closest("li").classList.remove("animate__headShake");
+    }, "1000");
+  }
+}); //CONTINUE - musim ucesat to ty classes a potom tohle vsechno asi hodit do fce? + zkontrolovat pridavani radku a zakazat pridavani, pokud mam input prazdny
+
+let allIngredientInputs = document.querySelectorAll(".addIngredientInput");
+
+allIngredientInputs.forEach((ingredientInput) => {
+  ingredientInput.addEventListener("keyup", (event) => {
+    if (event.key === "Enter") {
+      event.preventDefault;
+      addIngredient();
+    }
+  });
+});
 
 let addStepForm = document.querySelector(".addStep");
 let stepTextArea = document.querySelector(".addStepTextArea");
