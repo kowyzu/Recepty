@@ -5,7 +5,7 @@ import "animate.css";
 
 //function for adding new ingredients in form of inputs
 function addIngredient() {
-  let ingredientInput = document.querySelector(".addIngredientInput");
+  let ingredientInput = document.querySelector("#input-1");
 
   const ingredientPlaceHolder = document.querySelector(".addedIngredientsList");
   let newIngredientClass = "addedIngredient";
@@ -14,7 +14,7 @@ function addIngredient() {
 
   newIngredient.innerHTML = `
     <div class="input-group mb-3">
-        <input type="text" name="addedIngredient" class="form-control addIngredientInput" value="${ingredientInput.value}"/>
+        <input type="text" name="addedIngredient" class="form-control addedIngredientInput" value="${ingredientInput.value}"/>
         <button class="deleteButton btn btn-outline-secondary">X</button>
     </div>
   `;
@@ -128,8 +128,17 @@ function arrayCompilator(nodeList) {
 
 let addIngredientButton = document.querySelector(".addIngredientButton");
 
-addIngredientButton.addEventListener("click", () => {
-  addIngredient();
+addIngredientButton.addEventListener("click", (event) => {
+  if (document.querySelector("#input-1").value !== "") {
+    addIngredient();
+  } else {
+    document.querySelector("#input-1").classList.add("animate__animated");
+    document.querySelector("#input-1").classList.add("animate__headShake");
+    setTimeout(() => {
+      document.querySelector("#input-1").classList.remove("animate__animated");
+      document.querySelector("#input-1").classList.remove("animate__headShake");
+    }, "1000");
+  }
 });
 
 let ingredientsUl = document.querySelector(".addedIngredientsList");
@@ -150,17 +159,24 @@ ingredientsUl.addEventListener("click", (event) => {
       event.target.closest("li").classList.remove("animate__headShake");
     }, "1000");
   }
-}); //CONTINUE - musim ucesat to ty classes a potom tohle vsechno asi hodit do fce? + zkontrolovat pridavani radku a zakazat pridavani, pokud mam input prazdny
+});
 
-let allIngredientInputs = document.querySelectorAll(".addIngredientInput");
-
-allIngredientInputs.forEach((ingredientInput) => {
-  ingredientInput.addEventListener("keyup", (event) => {
-    if (event.key === "Enter") {
-      event.preventDefault;
-      addIngredient();
-    }
-  });
+ingredientsUl.addEventListener("keyup", (event) => {
+  if (
+    event.target.classList.contains("addedIngredientInput") &&
+    event.key === "Enter" &&
+    event.target.value.trim() !== ""
+  ) {
+    event.preventDefault();
+    addIngredient();
+  } else if (event.key === "Enter") {
+    event.target.closest("li").classList.add("animate__animated");
+    event.target.closest("li").classList.add("animate__headShake");
+    setTimeout(() => {
+      event.target.closest("li").classList.remove("animate__animated");
+      event.target.closest("li").classList.remove("animate__headShake");
+    }, "1000");
+  }
 });
 
 let addStepForm = document.querySelector(".addStep");
