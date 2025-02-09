@@ -122,60 +122,75 @@ function arrayCompilator(nodeList) {
   return arrayOfSmthing;
 }
 
+//function for letting user know that he needs to add some value
+function valueWarning(shakeTarget, changeColorTarget) {
+  let warningText = document.querySelector(".valueWarning");
+
+  shakeTarget.classList.add("animate__animated");
+  shakeTarget.classList.add("animate__headShake");
+  changeColorTarget.classList.add("missingValue");
+
+  warningText.style.display = "block";
+
+  setTimeout(() => {
+    shakeTarget.classList.remove("animate__animated");
+    shakeTarget.classList.remove("animate__headShake");
+    changeColorTarget.classList.remove("missingValue");
+  }, "2000");
+
+  changeColorTarget.addEventListener("input", (event) => {
+    warningText.classList.add("animate__fadeOut");
+
+    setTimeout(() => {
+      warningText.style.display = "none";
+      warningText.classList.remove("animate__fadeOut");
+    }, "2000");
+  });
+}
+
 /////////////////
 //Main Program//
 ///////////////
 
 let addIngredientButton = document.querySelector(".addIngredientButton");
 
+let firstIngredientInput = document.querySelector("#input-1");
+
+let firstIngredientLiElement = document.querySelector(".firstAddedIngredient");
+
 addIngredientButton.addEventListener("click", (event) => {
-  if (document.querySelector("#input-1").value !== "") {
+  if (firstIngredientInput.value !== "") {
     addIngredient();
   } else {
-    document.querySelector("#input-1").classList.add("animate__animated");
-    document.querySelector("#input-1").classList.add("animate__headShake");
-    setTimeout(() => {
-      document.querySelector("#input-1").classList.remove("animate__animated");
-      document.querySelector("#input-1").classList.remove("animate__headShake");
-    }, "1000");
+    valueWarning(firstIngredientLiElement, firstIngredientInput);
   }
 });
 
 let ingredientsUl = document.querySelector(".addedIngredientsList");
-console.log(ingredientsUl);
 
 ingredientsUl.addEventListener("click", (event) => {
-  console.log(event);
   if (
     event.target.classList.contains("deleteButton") &&
     ingredientsUl.childElementCount > 1
   ) {
     event.target.closest("li").remove();
   } else if (event.target.classList.contains("deleteButton")) {
-    event.target.closest("li").classList.add("animate__animated");
-    event.target.closest("li").classList.add("animate__headShake");
-    setTimeout(() => {
-      event.target.closest("li").classList.remove("animate__animated");
-      event.target.closest("li").classList.remove("animate__headShake");
-    }, "1000");
+    let closestLiElement = event.target.closest("li");
+
+    let closestInput = event.target
+      .closest("li")
+      .querySelector(".addedIngredientInput");
+    valueWarning(closestLiElement, closestInput);
   }
 });
 
-ingredientsUl.addEventListener("keyup", (event) => {
-  if (
-    event.target.classList.contains("addedIngredientInput") &&
-    event.key === "Enter" &&
-    event.target.value.trim() !== ""
-  ) {
+firstIngredientInput.addEventListener("keyup", (event) => {
+  if (event.key === "Enter" && event.target.value.trim() !== "") {
     event.preventDefault();
     addIngredient();
   } else if (event.key === "Enter") {
-    event.target.closest("li").classList.add("animate__animated");
-    event.target.closest("li").classList.add("animate__headShake");
-    setTimeout(() => {
-      event.target.closest("li").classList.remove("animate__animated");
-      event.target.closest("li").classList.remove("animate__headShake");
-    }, "1000");
+    let closestLiElement = event.target.closest("li");
+    valueWarning(closestLiElement, firstIngredientInput);
   }
 });
 

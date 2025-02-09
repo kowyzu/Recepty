@@ -288,11 +288,7 @@ ul {
 /* ///////// */
 
 .addRecipeNav {
-  
   justify-content: flex-start;
-
-
-
 }
 
 .addTitleButton, .addIngredientButton, .addStepButton, .deleteButton  {
@@ -313,6 +309,21 @@ ul {
   margin-top: 1rem;
 }
 
+.missingValue:focus {
+  border-color: #e30606;
+  box-shadow: 0 0 0 .25rem rgba(223, 24, 24, 0.26);
+}
+
+.missingValue {
+  border-color: #e30606;
+}
+
+.valueWarning {
+  color: #740707;
+  display: none;
+  --animate-duration: 2s;
+  margin-top: 1rem;
+}
 
 
 
