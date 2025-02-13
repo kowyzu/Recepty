@@ -318,7 +318,7 @@ ul {
   border-color: #e30606;
 }
 
-.valueWarning {
+.inputValueWarning, .stepValueWarning {
   color: #740707;
   display: none;
   --animate-duration: 2s;

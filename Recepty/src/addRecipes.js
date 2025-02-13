@@ -26,47 +26,73 @@ function addIngredient() {
   ingredientInput.value = "";
 }
 
-// function that wil create new li elements with added values
-function addNewSmthing(addSmthingForm, input, placeHolder, newClass) {
-  addSmthingForm.addEventListener("submit", (event) => {
-    event.preventDefault();
+let idNumber = 2;
 
-    console.log(input.value);
+//function for adding new steps in form of textAreas
+function addStep() {
+  const stepPlaceHolder = document.querySelector(".addedStepsList");
 
-    if (input.value) {
-      if (
-        addSmthingForm.className === "addTitle" &&
-        placeHolder.childElementCount === 1
-      ) {
-        alert(
-          "Název může mít jen jednu hodnotu. Co je moc, to je příliš - i v kuchyni!"
-        );
-      } else {
-        let newValue = document.createElement("li");
+  let newStepClass = "addedStep";
 
-        newValue.innerHTML = `
-        <span>${input.value}</span>
-        <button class="deleteButton">X</button>
+  let newStepId = "textArea-" + idNumber;
+
+  let newStep = document.createElement("li");
+
+  newStep.innerHTML = `
+    <div class="input-group mb-3">
+      <textarea name="addedStep" id="${newStepId}" class="form-control addedStepTextArea"></textarea>
+      <button class="deleteButton btn btn-outline-secondary">X</button>
+    </div>
   `;
 
-        newValue.classList.add(newClass);
+  newStep.classList.add(newStepClass);
 
-        placeHolder.appendChild(newValue);
+  stepPlaceHolder.appendChild(newStep);
 
-        input.value = "";
-      }
-    }
-  });
-
-  if (input.nodeName === "TEXTAREA") {
-    addSmthingForm.addEventListener("keyup", (event) => {
-      if (event.key === "Enter") {
-        event.preventDefault;
-        addSmthingForm.requestSubmit();
-      }
-    });
-  }
+  idNumber += 1;
 }
+
+// function that wil create new li elements with added values
+// function addNewSmthing(addSmthingForm, input, placeHolder, newClass) {
+//   addSmthingForm.addEventListener("submit", (event) => {
+//     event.preventDefault();
+
+//     console.log(input.value);
+
+//     if (input.value) {
+//       if (
+//         addSmthingForm.className === "addTitle" &&
+//         placeHolder.childElementCount === 1
+//       ) {
+//         alert(
+//           "Název může mít jen jednu hodnotu. Co je moc, to je příliš - i v kuchyni!"
+//         );
+//       } else {
+//         let newValue = document.createElement("li");
+
+//         newValue.innerHTML = `
+//         <span>${input.value}</span>
+//         <button class="deleteButton">X</button>
+//   `;
+
+//         newValue.classList.add(newClass);
+
+//         placeHolder.appendChild(newValue);
+
+//         input.value = "";
+//       }
+//     }
+//   });
+
+//   if (input.nodeName === "TEXTAREA") {
+//     addSmthingForm.addEventListener("keyup", (event) => {
+//       if (event.key === "Enter") {
+//         event.preventDefault;
+//         addSmthingForm.requestSubmit();
+//       }
+//     });
+//   }
+// }
 
 //function that will get value from select form
 function selectSmthing(selectForm) {
@@ -123,8 +149,8 @@ function arrayCompilator(nodeList) {
 }
 
 //function for letting user know that he needs to add some value
-function valueWarning(shakeTarget, changeColorTarget) {
-  let warningText = document.querySelector(".valueWarning");
+function valueWarning(shakeTarget, changeColorTarget, warningText) {
+  // let warningText = document.querySelector(".valueWarning");
 
   shakeTarget.classList.add("animate__animated");
   shakeTarget.classList.add("animate__headShake");
@@ -153,16 +179,32 @@ function valueWarning(shakeTarget, changeColorTarget) {
 ///////////////
 
 let addIngredientButton = document.querySelector(".addIngredientButton");
-
 let firstIngredientInput = document.querySelector("#input-1");
-
 let firstIngredientLiElement = document.querySelector(".firstAddedIngredient");
+let inputValueWarning = document.querySelector(".inputValueWarning");
 
 addIngredientButton.addEventListener("click", (event) => {
   if (firstIngredientInput.value !== "") {
     addIngredient();
   } else {
-    valueWarning(firstIngredientLiElement, firstIngredientInput);
+    valueWarning(
+      firstIngredientLiElement,
+      firstIngredientInput,
+      inputValueWarning
+    );
+  }
+});
+
+let addStepButton = document.querySelector(".addStepButton");
+let firstStepTextArea = document.querySelector("#textArea-1");
+let firstStepLiElement = document.querySelector(".firstAddedStep");
+let stepValueWarning = document.querySelector(".stepValueWarning");
+
+addStepButton.addEventListener("click", (event) => {
+  if (firstStepTextArea.value !== "") {
+    addStep();
+  } else {
+    valueWarning(firstStepLiElement, firstStepTextArea, stepValueWarning);
   }
 });
 
@@ -194,12 +236,12 @@ firstIngredientInput.addEventListener("keyup", (event) => {
   }
 });
 
-let addStepForm = document.querySelector(".addStep");
-let stepTextArea = document.querySelector(".addStepTextArea");
-const stepPlaceHolder = document.querySelector(".addedStepsList");
-let newStepClass = "addedStep";
+// let addStepForm = document.querySelector(".addStep");
+// let stepTextArea = document.querySelector(".addStepTextArea");
+// const stepPlaceHolder = document.querySelector(".addedStepsList");
+// let newStepClass = "addedStep";
 
-addNewSmthing(addStepForm, stepTextArea, stepPlaceHolder, newStepClass);
+// addNewSmthing(addStepForm, stepTextArea, stepPlaceHolder, newStepClass);
 
 let postButton = document.querySelector(".saveRecipeButton");
 

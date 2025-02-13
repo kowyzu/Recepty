@@ -41,56 +41,60 @@
 
       <div class="addIngredientWrapper">
         <h2>Ingredience</h2>
-
-        
-       
+              
           <ul class="addedIngredientsList">
+
             <li class="firstAddedIngredient">
+
               <div class="input-group mb-3">
                 <input type="text" name="addedIngredient" id="input-1" class="form-control addedIngredientInput"/>               
                 <button id="del-1" class="deleteButton btn btn-outline-secondary ">X</button>
-                
               </div>
-              <p class="valueWarning animate__animated animate__fadeIn">Recept na vzduch? 🍃 Zajímavý koncept, ale radši doplň tu předchozí ingredienci!</p>
+
+              <p class="inputValueWarning animate__animated animate__fadeIn">Recept na vzduch? 🍃 Zajímavý koncept, ale radši doplň tu předchozí ingredienci!</p>
+            
             </li>
 
-            
-
-            <!-- <li>
-              <form  class="addIngredientForm" action="">
-
-                <div class="input-group mb-3">
-
-                  <input type="text" name="ingredients" class="form-control addIngredientInput" placeholder="Přidej ingredience" >
-
-                </div>
-              </form>
-
-            </li> -->
-          
-
           </ul>
+
           <button class="btn btn-outline-secondary addIngredientButton" >Přidej ingredienci</button>
         
    
-  
       </div>
 
       <div class="addStepWrapper">
 
-        <form  class="addStep" action="">
+        <!-- <form  class="addStep" action="">
 
           <div class="input-group mb-3">
             <textarea class="form-control addStepTextArea" name="steps" placeholder="Popiš postup"></textarea>
             <button class="btn btn-outline-secondary addStepButton" >Přidej krok</button>
           </div>
           
-        </form>
+        </form> -->
 
-   
+        <h2>Postup</h2>
+              
         <ol class="addedStepsList">
 
+          <li class="firstAddedStep">
+
+            <div class="input-group mb-3">
+
+              <textarea name="addedStep" id="textArea-1" class="form-control addedStepTextArea"></textarea>
+
+              <button id="del-1" class="deleteButton btn btn-outline-secondary ">X</button>
+              
+            </div>
+
+            <p class="stepValueWarning animate__animated animate__fadeIn">Ani nejlepší recept nefunguje bez všech kroků! Doplň ten předchozí. 📋🥘</p>
+          
+          </li>
+
         </ol>
+
+        <button class="btn btn-outline-secondary addStepButton" >Přidej další krok</button>
+
 
       </div>
 
