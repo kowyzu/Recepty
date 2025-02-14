@@ -196,15 +196,20 @@ addIngredientButton.addEventListener("click", (event) => {
 });
 
 let addStepButton = document.querySelector(".addStepButton");
-let firstStepTextArea = document.querySelector("#textArea-1");
-let firstStepLiElement = document.querySelector(".firstAddedStep");
 let stepValueWarning = document.querySelector(".stepValueWarning");
+let stepsOl = document.querySelector(".addedStepsList");
 
 addStepButton.addEventListener("click", (event) => {
-  if (firstStepTextArea.value !== "") {
+  let textAreaIdName = "#textArea-";
+  let textAreaIdNumber = stepsOl.childElementCount;
+  let textAreaId = textAreaIdName + textAreaIdNumber;
+  let lastTextArea = document.querySelector(textAreaId);
+  let lastTextAreaParent = lastTextArea.parentElement;
+
+  if (lastTextArea.value !== "") {
     addStep();
   } else {
-    valueWarning(firstStepLiElement, firstStepTextArea, stepValueWarning);
+    valueWarning(lastTextAreaParent, lastTextArea, stepValueWarning);
   }
 });
 
