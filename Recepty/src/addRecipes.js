@@ -178,6 +178,7 @@ function valueWarning(shakeTarget, changeColorTarget, warningText) {
 //Main Program//
 ///////////////
 
+// add new ingredient input by button
 let addIngredientButton = document.querySelector(".addIngredientButton");
 let firstIngredientInput = document.querySelector("#input-1");
 let firstIngredientLiElement = document.querySelector(".firstAddedIngredient");
@@ -195,25 +196,20 @@ addIngredientButton.addEventListener("click", (event) => {
   }
 });
 
-let addStepButton = document.querySelector(".addStepButton");
-let stepValueWarning = document.querySelector(".stepValueWarning");
-let stepsOl = document.querySelector(".addedStepsList");
-
-addStepButton.addEventListener("click", (event) => {
-  let textAreaIdName = "#textArea-";
-  let textAreaIdNumber = stepsOl.childElementCount;
-  let textAreaId = textAreaIdName + textAreaIdNumber;
-  let lastTextArea = document.querySelector(textAreaId);
-  let lastTextAreaParent = lastTextArea.parentElement;
-
-  if (lastTextArea.value !== "") {
-    addStep();
-  } else {
-    valueWarning(lastTextAreaParent, lastTextArea, stepValueWarning);
+// add new ingredient input by enter
+firstIngredientInput.addEventListener("keyup", (event) => {
+  if (event.key === "Enter" && event.target.value.trim() !== "") {
+    event.preventDefault();
+    addIngredient();
+  } else if (event.key === "Enter") {
+    let closestLiElement = event.target.closest("li");
+    valueWarning(closestLiElement, firstIngredientInput, inputValueWarning);
   }
 });
 
+//delete specific ingredient input by specific delete button
 let ingredientsUl = document.querySelector(".addedIngredientsList");
+console.log("TODO add warning to html");
 
 ingredientsUl.addEventListener("click", (event) => {
   if (
@@ -231,14 +227,60 @@ ingredientsUl.addEventListener("click", (event) => {
   }
 });
 
-firstIngredientInput.addEventListener("keyup", (event) => {
-  if (event.key === "Enter" && event.target.value.trim() !== "") {
-    event.preventDefault();
-    addIngredient();
-  } else if (event.key === "Enter") {
-    let closestLiElement = event.target.closest("li");
-    valueWarning(closestLiElement, firstIngredientInput);
+// add new step textarea by button
+let addStepButton = document.querySelector(".addStepButton");
+let stepValueWarning = document.querySelector(".stepValueWarning");
+let stepsOl = document.querySelector(".addedStepsList");
+
+//!!!zkusit mozna pracovat jen s ol listem a poslednim elementem?
+addStepButton.addEventListener("click", () => {
+  let textAreaIdName = "#textArea-";
+  let textAreaIdNumber = stepsOl.childElementCount;
+  let textAreaId = textAreaIdName + textAreaIdNumber;
+  let lastTextArea = document.querySelector(textAreaId);
+  console.log(lastTextArea);
+  let lastTextAreaParent = lastTextArea.parentElement;
+
+  if (lastTextArea.value !== "") {
+    addStep();
+  } else {
+    valueWarning(lastTextAreaParent, lastTextArea, stepValueWarning);
   }
+});
+
+// funguje, dokud nepouzivam mazani
+// addStepButton.addEventListener("click", () => {
+//   let textAreaIdName = "#textArea-";
+//   let textAreaIdNumber = stepsOl.childElementCount;
+//   let textAreaId = textAreaIdName + textAreaIdNumber;
+//   let lastTextArea = document.querySelector(textAreaId);
+//   console.log(lastTextArea);
+//   let lastTextAreaParent = lastTextArea.parentElement;
+
+//   if (lastTextArea.value !== "") {
+//     addStep();
+//   } else {
+//     valueWarning(lastTextAreaParent, lastTextArea, stepValueWarning);
+//   }
+// });
+
+//delete specific step textarea by specific delete button
+console.log("TODO add warning to html");
+stepsOl.addEventListener("click", (event) => {
+  if (
+    event.target.classList.contains("deleteButton") &&
+    stepsOl.childElementCount > 1
+  ) {
+    event.target.closest("li").remove();
+  }
+  // else if (event.target.classList.contains("deleteButton")) {
+  //   let closestLiElement = event.target.closest("li");
+
+  //   let closestInput = event.target
+  //     .closest("li")
+  //     .querySelector(".addedIngredientInput");
+  //   valueWarning(closestLiElement, closestInput);
+  // }
 });
 
 // let addStepForm = document.querySelector(".addStep");
