@@ -26,21 +26,17 @@ function addIngredient() {
   ingredientInput.value = "";
 }
 
-let idNumber = 2;
-
 //function for adding new steps in form of textAreas
 function addStep() {
   const stepPlaceHolder = document.querySelector(".addedStepsList");
 
   let newStepClass = "addedStep";
 
-  let newStepId = "textArea-" + idNumber;
-
   let newStep = document.createElement("li");
 
   newStep.innerHTML = `
     <div class="input-group mb-3">
-      <textarea name="addedStep" id="${newStepId}" class="form-control addedStepTextArea"></textarea>
+      <textarea name="addedStep"  class="form-control addedStepTextArea"></textarea>
       <button class="deleteButton btn btn-outline-secondary">X</button>
     </div>
   `;
@@ -48,8 +44,6 @@ function addStep() {
   newStep.classList.add(newStepClass);
 
   stepPlaceHolder.appendChild(newStep);
-
-  idNumber += 1;
 }
 
 // function that wil create new li elements with added values
@@ -232,37 +226,17 @@ let addStepButton = document.querySelector(".addStepButton");
 let stepValueWarning = document.querySelector(".stepValueWarning");
 let stepsOl = document.querySelector(".addedStepsList");
 
-//!!!zkusit mozna pracovat jen s ol listem a poslednim elementem?
 addStepButton.addEventListener("click", () => {
-  let textAreaIdName = "#textArea-";
-  let textAreaIdNumber = stepsOl.childElementCount;
-  let textAreaId = textAreaIdName + textAreaIdNumber;
-  let lastTextArea = document.querySelector(textAreaId);
-  console.log(lastTextArea);
-  let lastTextAreaParent = lastTextArea.parentElement;
+  console.log(stepsOl.lastElementChild.querySelector("textarea"));
+  let lastLiElement = stepsOl.lastElementChild;
+  let lastTextArea = stepsOl.lastElementChild.querySelector("textarea");
 
   if (lastTextArea.value !== "") {
     addStep();
   } else {
-    valueWarning(lastTextAreaParent, lastTextArea, stepValueWarning);
+    valueWarning(lastLiElement, lastTextArea, stepValueWarning);
   }
 });
-
-// funguje, dokud nepouzivam mazani
-// addStepButton.addEventListener("click", () => {
-//   let textAreaIdName = "#textArea-";
-//   let textAreaIdNumber = stepsOl.childElementCount;
-//   let textAreaId = textAreaIdName + textAreaIdNumber;
-//   let lastTextArea = document.querySelector(textAreaId);
-//   console.log(lastTextArea);
-//   let lastTextAreaParent = lastTextArea.parentElement;
-
-//   if (lastTextArea.value !== "") {
-//     addStep();
-//   } else {
-//     valueWarning(lastTextAreaParent, lastTextArea, stepValueWarning);
-//   }
-// });
 
 //delete specific step textarea by specific delete button
 console.log("TODO add warning to html");
@@ -272,23 +246,15 @@ stepsOl.addEventListener("click", (event) => {
     stepsOl.childElementCount > 1
   ) {
     event.target.closest("li").remove();
+  } else if (event.target.classList.contains("deleteButton")) {
+    let closestLiElement = event.target.closest("li");
+
+    let closestTextArea = event.target
+      .closest("li")
+      .querySelector(".addedStepTextArea");
+    valueWarning(closestLiElement, closestTextArea);
   }
-  // else if (event.target.classList.contains("deleteButton")) {
-  //   let closestLiElement = event.target.closest("li");
-
-  //   let closestInput = event.target
-  //     .closest("li")
-  //     .querySelector(".addedIngredientInput");
-  //   valueWarning(closestLiElement, closestInput);
-  // }
 });
-
-// let addStepForm = document.querySelector(".addStep");
-// let stepTextArea = document.querySelector(".addStepTextArea");
-// const stepPlaceHolder = document.querySelector(".addedStepsList");
-// let newStepClass = "addedStep";
-
-// addNewSmthing(addStepForm, stepTextArea, stepPlaceHolder, newStepClass);
 
 let postButton = document.querySelector(".saveRecipeButton");
 
