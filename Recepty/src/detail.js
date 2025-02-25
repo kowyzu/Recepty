@@ -35,6 +35,12 @@ async function displayRecipeDetail(recipesData, id) {
 
       introPlaceHolder.appendChild(newIntro);
 
+      let img = newIntro.querySelector("img");
+      img.addEventListener("error", (event) => {
+        console.log(event);
+        img.src = "./src/recipes_imgs/default.webp";
+      });
+
       let recipeIngredients = recipe.ingredients;
       let recipeSteps = recipe.preparation_process;
 

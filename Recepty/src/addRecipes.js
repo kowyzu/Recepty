@@ -19,11 +19,17 @@ function addIngredient() {
     </div>
   `;
 
-  newIngredient.classList.add(newIngredientClass);
+  newIngredient.classList.add(
+    newIngredientClass,
+    "animate__animated",
+    "animate__pulse"
+  );
 
   ingredientPlaceHolder.appendChild(newIngredient);
 
   ingredientInput.value = "";
+
+  ingredientInput.focus();
 }
 
 //function for adding new steps in form of textAreas
@@ -41,52 +47,12 @@ function addStep() {
     </div>
   `;
 
-  newStep.classList.add(newStepClass);
+  newStep.classList.add(newStepClass, "animate__animated", "animate__pulse");
 
   stepPlaceHolder.appendChild(newStep);
+
+  newStep.querySelector("textarea").focus();
 }
-
-// function that wil create new li elements with added values
-// function addNewSmthing(addSmthingForm, input, placeHolder, newClass) {
-//   addSmthingForm.addEventListener("submit", (event) => {
-//     event.preventDefault();
-
-//     console.log(input.value);
-
-//     if (input.value) {
-//       if (
-//         addSmthingForm.className === "addTitle" &&
-//         placeHolder.childElementCount === 1
-//       ) {
-//         alert(
-//           "Název může mít jen jednu hodnotu. Co je moc, to je příliš - i v kuchyni!"
-//         );
-//       } else {
-//         let newValue = document.createElement("li");
-
-//         newValue.innerHTML = `
-//         <span>${input.value}</span>
-//         <button class="deleteButton">X</button>
-//   `;
-
-//         newValue.classList.add(newClass);
-
-//         placeHolder.appendChild(newValue);
-
-//         input.value = "";
-//       }
-//     }
-//   });
-
-//   if (input.nodeName === "TEXTAREA") {
-//     addSmthingForm.addEventListener("keyup", (event) => {
-//       if (event.key === "Enter") {
-//         event.preventDefault;
-//         addSmthingForm.requestSubmit();
-//       }
-//     });
-//   }
-// }
 
 //function that will get value from select form
 function selectSmthing(selectForm) {
@@ -101,46 +67,100 @@ function selectSmthing(selectForm) {
 }
 
 //function that will post new recipe to supabase
-function postRecipe() {
+async function postRecipe() {
   let titleToPost = document.querySelector(".addTitleInput");
-  let ingredientsToPost = document.querySelectorAll(".addedIngredient span");
-  let stepsToPost = document.querySelectorAll(".addedStep span");
 
-  console.log(titleToPost.value);
+  let ingredientsToPost = document
+    .querySelector(".addedIngredientsList")
+    .querySelectorAll("li");
 
-  if (
-    titleToPost.value !== "" &&
-    ingredientsToPost.length !== 0 &&
-    stepsToPost.length !== 0
-  ) {
-    titleToPost = titleToPost.value;
-    let arrayOfIngredients = arrayCompilator(ingredientsToPost);
-    let arrayOfSteps = arrayCompilator(stepsToPost);
-  } else {
-    console.log("chybi hodnota");
-  }
+  let arrayOfIngredients = [];
+
+  ingredientsToPost.forEach((ingredientToPost) => {
+    if (ingredientToPost.querySelector("input").value !== "") {
+      arrayOfIngredients.push(ingredientToPost.querySelector("input").value);
+    } else {
+      return;
+    }
+  });
+
+  let stepsToPost = document
+    .querySelector(".addedStepsList")
+    .querySelectorAll("li");
+
+  let arrayOfSteps = [];
+
+  stepsToPost.forEach((stepToPost) => {
+    if (stepToPost.querySelector("textarea").value !== "") {
+      arrayOfSteps.push(stepToPost.querySelector("textarea").value);
+    } else {
+      return;
+    }
+  });
 
   let selectCategoryForm = document.querySelector(".selectCategoryForm");
   let selectTimeForm = document.querySelector(".selectTimeForm");
 
   let category = selectSmthing(selectCategoryForm);
-  console.log(category);
-  let time = selectSmthing(selectTimeForm);
-  console.log(time);
 
-  //   insertRow(titleToPost, arrayOfIngredients, arrayOfSteps);
+  let time = selectSmthing(selectTimeForm);
+
+  if (
+    titleToPost.value !== "" &&
+    ingredientsToPost.length === arrayOfIngredients.length &&
+    stepsToPost.length === arrayOfSteps.length &&
+    category !== null &&
+    time !== null
+  ) {
+    titleToPost = titleToPost.value;
+
+    try {
+      const { error } = await insertRow(
+        titleToPost,
+        arrayOfIngredients,
+        arrayOfSteps,
+        category,
+        time
+      );
+
+      if (error !== null) {
+        console.error("Error inserting recipe:", error);
+        const toastError = document.getElementById("toastError");
+        const toastBootstrapError =
+          bootstrap.Toast.getOrCreateInstance(toastError);
+        toastBootstrapError.show();
+      } else {
+        console.log("Recipe added successfully!");
+        const toastSuccess = document.getElementById("toastSuccess");
+        const toastBootstrapSuccess =
+          bootstrap.Toast.getOrCreateInstance(toastSuccess);
+        toastBootstrapSuccess.show();
+      }
+    } catch (err) {
+      console.error("Unexpected error:", err);
+      const toastError = document.getElementById("toastError");
+      const toastBootstrapError =
+        bootstrap.Toast.getOrCreateInstance(toastError);
+      toastBootstrapError.show();
+    }
+  } else {
+    const toastMissingFields = document.getElementById("toastMissingFields");
+    const toastBootstrapMissingFields =
+      bootstrap.Toast.getOrCreateInstance(toastMissingFields);
+    toastBootstrapMissingFields.show();
+  }
 }
 
 //function that will compile new array
-function arrayCompilator(nodeList) {
-  let arrayOfSmthing = [];
+// function arrayCompilator(nodeList) {
+//   let arrayOfSmthing = [];
 
-  nodeList.forEach((node) => {
-    arrayOfSmthing.push(node.innerText.trim());
-  });
+//   nodeList.forEach((node) => {
+//     arrayOfSmthing.push(node.innerText.trim());
+//   });
 
-  return arrayOfSmthing;
-}
+//   return arrayOfSmthing;
+// }
 
 //function for letting user know that he needs to add some value
 function valueWarning(shakeTarget, changeColorTarget, warningText) {
@@ -148,14 +168,14 @@ function valueWarning(shakeTarget, changeColorTarget, warningText) {
 
   shakeTarget.classList.add("animate__animated");
   shakeTarget.classList.add("animate__headShake");
-  changeColorTarget.classList.add("missingValue");
+  changeColorTarget.classList.add("warningColor");
 
   warningText.style.display = "block";
 
   setTimeout(() => {
     shakeTarget.classList.remove("animate__animated");
     shakeTarget.classList.remove("animate__headShake");
-    changeColorTarget.classList.remove("missingValue");
+    changeColorTarget.classList.remove("warningColor");
   }, "2000");
 
   changeColorTarget.addEventListener("input", (event) => {
@@ -203,7 +223,6 @@ firstIngredientInput.addEventListener("keyup", (event) => {
 
 //delete specific ingredient input by specific delete button
 let ingredientsUl = document.querySelector(".addedIngredientsList");
-console.log("TODO add warning to html");
 
 ingredientsUl.addEventListener("click", (event) => {
   if (
@@ -227,7 +246,6 @@ let stepValueWarning = document.querySelector(".stepValueWarning");
 let stepsOl = document.querySelector(".addedStepsList");
 
 addStepButton.addEventListener("click", () => {
-  console.log(stepsOl.lastElementChild.querySelector("textarea"));
   let lastLiElement = stepsOl.lastElementChild;
   let lastTextArea = stepsOl.lastElementChild.querySelector("textarea");
 
@@ -239,7 +257,6 @@ addStepButton.addEventListener("click", () => {
 });
 
 //delete specific step textarea by specific delete button
-console.log("TODO add warning to html");
 stepsOl.addEventListener("click", (event) => {
   if (
     event.target.classList.contains("deleteButton") &&

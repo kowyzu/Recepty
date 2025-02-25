@@ -1,6 +1,7 @@
 import { createClient } from "@supabase/supabase-js";
 
-// Access environment variables
+// Access environment variable
+
 const supabaseUrl = "https://bandgkogwpfcbuprjlce.supabase.co";
 
 const supabaseKey =
@@ -40,12 +41,43 @@ export async function fetchFilteredData(search) {
 
 //TODO: dokoncit tuto funkci, musim tam pridat povinna pole, zatim jsem je zvolila pouze nahodne
 
-export async function insertRow(recipeTitle) {
+export async function insertRow(
+  recipeTitle,
+  listOfIngredients,
+  listOfSteps,
+  category,
+  time
+) {
   const { data, error } = await supabase
     .from("Recipes")
     .insert([
-      { title: recipeTitle, ingredients: "nic", is_sub_recipe: "false" },
-    ]);
+      {
+        title: recipeTitle,
+        ingredients: listOfIngredients,
+        preparation_process: listOfSteps,
+        is_sub_recipe: "false",
+        category: category,
+        time: time,
+      },
+    ])
+    .select();
+
+  return { data, error };
+
+  // if (error !== null) {
+  //   const toastError = document.getElementById("toastError");
+
+  //   const toastBootstrapError = bootstrap.Toast.getOrCreateInstance(toastError);
+
+  //   toastBootstrapError.show();
+  // } else {
+  //   const toastSuccess = document.getElementById("toastSuccess");
+
+  //   const toastBootstrapSuccess =
+  //     bootstrap.Toast.getOrCreateInstance(toastSuccess);
+
+  //   toastBootstrapSuccess.show();
+  // }
 }
 
 //////////////////////

@@ -10,13 +10,62 @@
     <script defer type="module" src="/src/addRecipes.js"></script>
     <title>Vite App</title>
   </head>
-  <body>
-    <header class="detailHeader">
+
+  <body class="addRecipeBody">
+    <div aria-live="polite" aria-atomic="true" class="position-relative">
+      <!-- Position it: -->
+      <!-- - `.toast-container` for spacing between toasts -->
+      <!-- - `top-0` & `end-0` to position the toasts in the upper right corner -->
+      <!-- - `.p-3` to prevent the toasts from sticking to the edge of the container  -->
+      <div class="toast-container top-0 end-0 ">
+    
+        <!-- Then put toasts within -->
+        <div id="toastMissingFields" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+          <div class="toast-header">
+            <img src="..." class="rounded me-2" alt="...">
+            <strong class="me-auto">Bootstrap</strong>           
+            <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+          </div>
+          <div class="toast-body">
+            Vyplň prosím všechna pole.
+          </div>
+        </div>
+    
+        <div id="toastError" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+          <div class="toast-header">
+            <img src="..." class="rounded me-2" alt="...">
+            <strong class="me-auto">Bootstrap</strong>
+            <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+          </div>
+          <div class="toast-body">
+            Něco se pokazilo, zkus to prosím znovu.
+          </div>
+        </div>
+
+        <div id="toastSuccess" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+          <div class="toast-header">
+            <img src="..." class="rounded me-2" alt="...">
+            <strong class="me-auto">Bootstrap</strong>
+            <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>          
+          </div>
+          <div class="toast-body">
+            Nový recept je na světě! Teď už jen sehnat někoho, kdo to uvaří.
+          </div>
+        </div> 
+
+      </div>
+      
+    </div>
+    
+
+    <header class="detailHeader">      
 
       <nav class="navbar navbar-expand-lg bg-body-tertiary addRecipeNav">
           <a class="navbar-brand back-arrow detailBackArrow" href="/"><i class="fa-solid fa-arrow-left"></i></a>
           <h1 class="detailTitle">Přidání receptu</h1>
       </nav>
+
+      
 
     </header>
 
@@ -48,7 +97,6 @@
 
               <div class="input-group mb-3">
                 <input type="text" name="addedIngredient" id="input-1" class="form-control addedIngredientInput"/>               
-                <button id="del-1" class="deleteButton btn btn-outline-secondary ">X</button>
               </div>
 
               <p class="inputValueWarning animate__animated animate__fadeIn">Recept na vzduch? 🍃 Zajímavý koncept, ale radši doplň tu předchozí ingredienci!</p>
@@ -57,21 +105,14 @@
 
           </ul>
 
+          
+
           <button class="btn btn-outline-secondary addIngredientButton" >Přidej ingredienci</button>
         
    
       </div>
 
       <div class="addStepWrapper">
-
-        <!-- <form  class="addStep" action="">
-
-          <div class="input-group mb-3">
-            <textarea class="form-control addStepTextArea" name="steps" placeholder="Popiš postup"></textarea>
-            <button class="btn btn-outline-secondary addStepButton" >Přidej krok</button>
-          </div>
-          
-        </form> -->
 
         <h2>Postup</h2>
               
@@ -83,18 +124,16 @@
 
               <textarea name="addedStep" id="textArea-1" class="form-control addedStepTextArea"></textarea>
 
-              <button id="del-1" class="deleteButton btn btn-outline-secondary ">X</button>
               
             </div>
      
           </li>
-
+        
         </ol>
 
         <p class="stepValueWarning animate__animated animate__fadeIn">Ani nejlepší recept nefunguje bez všech kroků! Doplň ten předchozí. 📋🥘</p>
-
+        
         <button class="btn btn-outline-secondary addStepButton" >Přidej další krok</button>
-
 
       </div>
 
@@ -127,7 +166,7 @@
 
     </footer>
 
-
-
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+  
   </body>
 </html>
