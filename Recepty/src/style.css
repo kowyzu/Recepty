@@ -1,12 +1,12 @@
 body {
-  padding: 4rem;
-  margin: 0rem auto;
+  /* padding: 4rem;
+  margin: 0rem auto; */
   font-family:"Roboto", 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
   background-color:#E5D9F2 ;
 }
 
 header {
-  margin-bottom: 2rem;
+  /* margin-bottom: 2rem; */
 }
 
 .bg-body-tertiary {
