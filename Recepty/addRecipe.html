@@ -23,7 +23,7 @@
     
         <!-- Then put toasts within -->
 
-        <div id="toastMissingFields" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+        <div id="toastMissingFields" class="toast fixed-top fixedTopRight" role="alert" aria-live="assertive" aria-atomic="true">
           <div class="toast-header">
             <img src="..." class="rounded me-2" alt="...">
             <strong class="me-auto">Bootstrap</strong>
@@ -60,7 +60,7 @@
       
     </div>
 
-    <header class="detailHeader">
+    <header class="detailHeader sticky-top">
           
          <nav class="navbar navbar-expand-lg bg-body-tertiary a"> <!-- ddRecipeNav-->
             <a class="navbar-brand back-arrow detailBackArrow" href="/"><i class="fa-solid fa-arrow-left"></i></a>
@@ -70,7 +70,7 @@
     </header>
     
     
-    <div class="container mt-3 "> <!-- addRecipeBody-->
+    <div class="container mt-3"> <!-- addRecipeBody-->
 
       <div class="row"> 
     
@@ -95,7 +95,7 @@
           </div>    
 
 
-          <div class="row">
+          <div class="row text-center">
 
             <div class="addIngredientWrapper col">
 
@@ -114,11 +114,11 @@
                 </li>
 
               </ul>
-              
+
               <p class="inputValueWarning animate__animated animate__fadeIn">
                 Recept na vzduch? 🍃 Zajímavý koncept, ale radši doplň tu předchozí ingredienci!
               </p>
-              
+
               <button class="btn btn-outline-secondary addIngredientButton" >
                 Přidej ingredienci
               </button>
@@ -148,7 +148,7 @@
               <p class="stepValueWarning animate__animated animate__fadeIn">
                 Ani nejlepší recept nefunguje bez všech kroků! Doplň ten předchozí. 📋🥘
               </p>
-              
+
               <button class="btn btn-outline-secondary addStepButton">
                 Přidej další krok
               </button>
@@ -156,6 +156,46 @@
             </div>
 
           </div>
+
+          <!-- <div class="row">
+
+            <div class="col">
+
+              <p class="inputValueWarning animate__animated animate__fadeIn">
+                Recept na vzduch? 🍃 Zajímavý koncept, ale radši doplň tu předchozí ingredienci!
+              </p>
+            
+            </div>
+
+            <div class="col">
+
+              <p class="stepValueWarning animate__animated animate__fadeIn">
+                Ani nejlepší recept nefunguje bez všech kroků! Doplň ten předchozí. 📋🥘
+              </p>
+              
+            </div>
+
+          </div>
+
+          <div class="row text-center">
+
+            <div class="col">
+              
+              <button class="btn btn-outline-secondary addIngredientButton" >
+                Přidej ingredienci
+              </button>
+
+            </div>
+
+            <div class="col">
+              
+              <button class="btn btn-outline-secondary addStepButton">
+                Přidej další krok
+              </button>
+              
+            </div>
+
+          </div> -->
 
           <div class="row">
 

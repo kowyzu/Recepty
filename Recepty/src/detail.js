@@ -23,7 +23,8 @@ async function displayRecipeDetail(recipesData, id) {
         "navbar",
         "navbar-expand-lg",
         "bg-body-tertiary",
-        "detailNav"
+        "detailNav",
+        "fixed-top"
       );
 
       let newIntro = document.createElement("div");

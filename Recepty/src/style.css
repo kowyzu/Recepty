@@ -11,7 +11,7 @@ header {
 
 .bg-body-tertiary {
   
-  background-color: #cdc1ff82 !important;
+  background-color: #d7cff7 !important;
 }
 
 .spoonIco {
@@ -287,12 +287,13 @@ ul {
 /* add Recipe CSS */
 /* ///////// */
 
-
-
-
+.addedIngredientsList {
+  list-style-type: none;
+  padding-left: 0;
+}
 
 .saveRecipeButton {
-  margin-top: 2rem;
+  margin-top: 0.875rem;
 }
 
 .saveRecipeButton:hover {
@@ -315,11 +316,21 @@ ul {
 
 .inputValueWarning, .stepValueWarning, .undeletable-step {
   margin: 0 auto;
-  font-size: 1.2rem;
+  font-size: 0.9rem;
   color: #740707;
   display: none;
   --animate-duration: 2s;
+}
+
+.addIngredientButton, .addStepButton {
+  margin-bottom: 1rem ;
   margin-top: 1rem;
+  
+}
+
+.fixedTopRight {
+  justify-self: right;
+  margin: 0.3% 0.3%;
 }
 
 .animate__pulse {
