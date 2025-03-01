@@ -5,16 +5,17 @@ import "animate.css";
 
 //function for adding new ingredients in form of inputs
 function addIngredient() {
-  let ingredientInput = document.querySelector("#input-1");
+  // let ingredientInput = document.querySelector("#input-1");
 
   const ingredientPlaceHolder = document.querySelector(".addedIngredientsList");
+
   let newIngredientClass = "addedIngredient";
 
   let newIngredient = document.createElement("li");
 
   newIngredient.innerHTML = `
     <div class="input-group mb-3">
-        <input type="text" name="addedIngredient" class="form-control addedIngredientInput" value="${ingredientInput.value}"/>
+        <input type="text" name="addedIngredient" class="form-control addedIngredientInput" "/>
         <button class="deleteButton btn btn-outline-secondary">X</button>
     </div>
   `;
@@ -27,9 +28,7 @@ function addIngredient() {
 
   ingredientPlaceHolder.appendChild(newIngredient);
 
-  ingredientInput.value = "";
-
-  ingredientInput.focus();
+  newIngredient.querySelector("input").focus();
 }
 
 //function for adding new steps in form of textAreas
@@ -193,37 +192,38 @@ function valueWarning(shakeTarget, changeColorTarget, warningText) {
 ///////////////
 
 // add new ingredient input by button
+let ingredientsUl = document.querySelector(".addedIngredientsList");
 let addIngredientButton = document.querySelector(".addIngredientButton");
-let firstIngredientInput = document.querySelector("#input-1");
-let firstIngredientLiElement = document.querySelector(".firstAddedIngredient");
 let inputValueWarning = document.querySelector(".inputValueWarning");
 
-addIngredientButton.addEventListener("click", (event) => {
-  if (firstIngredientInput.value !== "") {
+addIngredientButton.addEventListener("click", () => {
+  let lastLiElement = ingredientsUl.lastElementChild;
+  let lastInput = ingredientsUl.lastElementChild.querySelector("input");
+  if (lastInput.value !== "") {
     addIngredient();
   } else {
-    valueWarning(
-      firstIngredientLiElement,
-      firstIngredientInput,
-      inputValueWarning
-    );
+    valueWarning(lastLiElement, lastInput, inputValueWarning);
   }
 });
 
 // add new ingredient input by enter
-firstIngredientInput.addEventListener("keyup", (event) => {
-  if (event.key === "Enter" && event.target.value.trim() !== "") {
+ingredientsUl.addEventListener("keyup", (event) => {
+  let lastInput = ingredientsUl.lastElementChild.querySelector("input");
+  if (
+    event.key === "Enter" &&
+    event.target.value.trim() !== "" &&
+    event.target === lastInput
+  ) {
     event.preventDefault();
     addIngredient();
   } else if (event.key === "Enter") {
     let closestLiElement = event.target.closest("li");
-    valueWarning(closestLiElement, firstIngredientInput, inputValueWarning);
+    lastInput = ingredientsUl.lastElementChild.querySelector("input");
+    valueWarning(closestLiElement, lastInput, inputValueWarning);
   }
 });
 
 //delete specific ingredient input by specific delete button
-let ingredientsUl = document.querySelector(".addedIngredientsList");
-
 ingredientsUl.addEventListener("click", (event) => {
   if (
     event.target.classList.contains("deleteButton") &&

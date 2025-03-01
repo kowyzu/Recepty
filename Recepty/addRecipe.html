@@ -70,142 +70,146 @@
     </header>
     
     
-    <div class="container bd-gutter mt-3 my-md-4 bd-layout"> <!-- addRecipeBody-->
+    <div class="container mt-3 "> <!-- addRecipeBody-->
+
+      <div class="row"> 
     
-      <main class="addRecipeMain">
-          
-        <div class="row"> 
-
-            <div class="addTitleWrapper col "></div>
-
-              <form  class="addTitle" action="">
-
-                <div class="input-group mb-3">
-
-                  <input type="text" name="title" class="form-control addTitleInput" placeholder="Napiš název receptu" >
-
-                </div>
-
-              </form>
-
-            </div>
-
-        </div>    
-
-
-        <div class="row">
-
-          <div class="addIngredientWrapper col">
-
-            <h2>
-              Ingredience
-            </h2>
-                  
-            <ul class="addedIngredientsList">
-
-              <li class="firstAddedIngredient">
-
-                <div class="input-group mb-3">
-                  <input type="text" name="addedIngredient" id="input-1" class="form-control addedIngredientInput"/>               
-                </div>
-
-                <p class="inputValueWarning animate__animated animate__fadeIn">
-                  Recept na vzduch? 🍃 Zajímavý koncept, ale radši doplň tu předchozí ingredienci!
-                </p>
-              
-              </li>
-
-            </ul>
+        <main class="addRecipeMain">
             
-            <button class="btn btn-outline-secondary addIngredientButton" >
-              Přidej ingredienci
-            </button>
+          <div class="row"> 
+
+              <div class="addTitleWrapper col"></div>
+
+                <form  class="addTitle" action="">
+
+                  <div class="input-group mb-3">
+
+                    <input type="text" name="title" class="form-control addTitleInput" placeholder="Napiš název receptu" >
+
+                  </div>
+
+                </form>
+
+              </div>
+
+          </div>    
+
+
+          <div class="row">
+
+            <div class="addIngredientWrapper col">
+
+              <h2>
+                Ingredience
+              </h2>
+                    
+              <ul class="addedIngredientsList">
+
+                <li class="firstAddedIngredient">
+
+                  <div class="input-group mb-3">
+                    <input type="text" name="addedIngredient" id="input-1" class="form-control addedIngredientInput"/>               
+                  </div>
                 
-          </div>
+                </li>
 
-          <div class="addStepWrapper col">
-
-            <h2>
-              Postup
-            </h2>
+              </ul>
+              
+              <p class="inputValueWarning animate__animated animate__fadeIn">
+                Recept na vzduch? 🍃 Zajímavý koncept, ale radši doplň tu předchozí ingredienci!
+              </p>
+              
+              <button class="btn btn-outline-secondary addIngredientButton" >
+                Přidej ingredienci
+              </button>
                   
-            <ol class="addedStepsList">
-
-              <li class="firstAddedStep">
-
-                <div class="input-group mb-3">
-
-                  <textarea name="addedStep" id="textArea-1" class="form-control addedStepTextArea"></textarea>
-                  
-                </div>
-        
-              </li>
-            
-            </ol>
-
-            <p class="stepValueWarning animate__animated animate__fadeIn">
-              Ani nejlepší recept nefunguje bez všech kroků! Doplň ten předchozí. 📋🥘
-            </p>
-            
-            <button class="btn btn-outline-secondary addStepButton">
-              Přidej další krok
-            </button>
-
-          </div>
-
-        </div>
-
-        <div class="row">
-
-          <div class="col">
-
-            <select class="form-select selectCategoryForm " aria-label="Default select example">
-              <option selected>Do jaké kategorie tento recept patří? </option>
-              <option value="1">Vaření</option>
-              <option value="2">Pečení</option>
-            </select>
-
-            <select class="form-select selectTimeForm " aria-label="Default select example">
-
-              <option selected>Jak dlouho přibližně trvá příprava? </option>
-
-              <option value="1">~ 15 min</option>
-
-              <option value="2">~ 30 min</option>
-
-              <option value="3">~ 45 min</option>
-
-              <option value="4">~ 1 h</option>
-
-              <option value="5">~ 1 h 15 min</option>
-
-              <option value="6">~ 1 h 30 min</option>
-
-              <option value="7">> 1 h 30 min</option>
-
-            </select>
-
             </div>
 
-        </div>
+            <div class="addStepWrapper col">
 
-        <div class="row">
+              <h2>
+                Postup
+              </h2>
+                    
+              <ol class="addedStepsList">
 
-          <div class="col">
+                <li class="firstAddedStep">
 
-            <div class="d-grid gap-2">
+                  <div class="input-group mb-3">
 
-              <button class="btn btn-primary saveRecipeButton" type="button">
-                Ulož svůj nový recept
+                    <textarea name="addedStep" id="textArea-1" class="form-control addedStepTextArea"></textarea>
+                    
+                  </div>
+          
+                </li>
+              
+              </ol>
+
+              <p class="stepValueWarning animate__animated animate__fadeIn">
+                Ani nejlepší recept nefunguje bez všech kroků! Doplň ten předchozí. 📋🥘
+              </p>
+              
+              <button class="btn btn-outline-secondary addStepButton">
+                Přidej další krok
               </button>
 
             </div>
 
           </div>
 
-        </div>
-         
-       </main>
+          <div class="row">
+
+            <div class="col">
+
+              <select class="form-select selectCategoryForm " aria-label="Default select example">
+                <option selected>Do jaké kategorie tento recept patří? </option>
+                <option value="1">Vaření</option>
+                <option value="2">Pečení</option>
+              </select>
+
+              <select class="form-select selectTimeForm " aria-label="Default select example">
+
+                <option selected>Jak dlouho přibližně trvá příprava? </option>
+
+                <option value="1">~ 15 min</option>
+
+                <option value="2">~ 30 min</option>
+
+                <option value="3">~ 45 min</option>
+
+                <option value="4">~ 1 h</option>
+
+                <option value="5">~ 1 h 15 min</option>
+
+                <option value="6">~ 1 h 30 min</option>
+
+                <option value="7">> 1 h 30 min</option>
+
+              </select>
+
+              </div>
+
+          </div>
+
+          <div class="row">
+
+            <div class="col">
+
+              <div class="d-grid gap-2">
+
+                <button class="btn btn-primary saveRecipeButton" type="button">
+                  Ulož svůj nový recept
+                </button>
+
+              </div>
+
+            </div>
+
+          </div>
+          
+        </main>
+
+      </div>   
 
     </div>
 
