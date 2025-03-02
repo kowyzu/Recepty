@@ -1,4 +1,4 @@
-//console.log("uh hello world agaign");
+// console.log("uh hello world agaign");
 
 import { insertRow } from "./utils";
 import "animate.css";
@@ -65,7 +65,31 @@ function selectFormValue(selectForm) {
   }
 }
 
-//function that will post new recipe to supabase
+//Extracts non-empty values from input or textarea elements inside a list of <li> items.
+function extractValuesFromList(listItems, inputType) {
+  let extractedValues = [];
+
+  listItems.forEach((listItem) => {
+    if (listItem.querySelector(inputType).value !== "") {
+      extractedValues.push(listItem.querySelector(inputType).value);
+    } else {
+      return;
+    }
+  });
+
+  return extractedValues;
+}
+
+console.log("TODO");
+//Shows toast with additional information
+function showToast() {
+  const toastSuccess = document.getElementById("toastSuccess");
+  const toastBootstrapSuccess =
+    bootstrap.Toast.getOrCreateInstance(toastSuccess);
+  toastBootstrapSuccess.show();
+}
+
+//Posts new recipe to supabase
 async function postRecipe() {
   let titleToPost = document.querySelector(".addTitleInput");
 
@@ -73,36 +97,17 @@ async function postRecipe() {
     .querySelector(".addedIngredientsList")
     .querySelectorAll("li");
 
-  let arrayOfIngredients = [];
-
-  ingredientsToPost.forEach((ingredientToPost) => {
-    if (ingredientToPost.querySelector("input").value !== "") {
-      arrayOfIngredients.push(ingredientToPost.querySelector("input").value);
-    } else {
-      return;
-    }
-  });
+  let arrayOfIngredients = extractValuesFromList(ingredientsToPost, "input");
 
   let stepsToPost = document
     .querySelector(".addedStepsList")
     .querySelectorAll("li");
 
-  let arrayOfSteps = [];
+  let arrayOfSteps = extractValuesFromList(stepsToPost, "textarea");
 
-  stepsToPost.forEach((stepToPost) => {
-    if (stepToPost.querySelector("textarea").value !== "") {
-      arrayOfSteps.push(stepToPost.querySelector("textarea").value);
-    } else {
-      return;
-    }
-  });
+  let category = selectFormValue(document.querySelector(".selectCategoryForm"));
 
-  let selectCategoryForm = document.querySelector(".selectCategoryForm");
-  let selectTimeForm = document.querySelector(".selectTimeForm");
-
-  let category = selectFormValue(selectCategoryForm);
-
-  let time = selectFormValue(selectTimeForm);
+  let time = selectFormValue(document.querySelector(".selectTimeForm"));
 
   if (
     titleToPost.value !== "" &&
@@ -149,17 +154,6 @@ async function postRecipe() {
     toastBootstrapMissingFields.show();
   }
 }
-
-//function that will compile new array
-// function arrayCompilator(nodeList) {
-//   let arrayOfSmthing = [];
-
-//   nodeList.forEach((node) => {
-//     arrayOfSmthing.push(node.innerText.trim());
-//   });
-
-//   return arrayOfSmthing;
-// }
 
 //function for letting user know that he needs to add some value
 function valueWarning(shakeTarget, changeColorTarget, warningText) {

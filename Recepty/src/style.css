@@ -301,9 +301,9 @@ ul {
     flex-grow: 1; 
 }
 
-.addTitleInput {
+/* .addTitleInput {
   text-align: center;
-}
+} */
 
 .addedIngredientsList {
   list-style-type: none;
