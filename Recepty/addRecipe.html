@@ -25,9 +25,10 @@
 
         <div id="toastMissingFields" class="toast fixed-top fixedTopRight" role="alert" aria-live="assertive" aria-atomic="true">
           <div class="toast-header">
-            <img src="..." class="rounded me-2" alt="...">
-            <strong class="me-auto">Bootstrap</strong>
-            <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>          
+            <!-- <i class="fa-solid fa-check" style="color: #63E6BE;"></i> -->
+            <!-- <i class="fa-solid fa-triangle-exclamation" style="color: #870828;"></i> -->
+            <strong class="me-auto"></strong>
+            <button type="button" class="btn btn-close toastBtn" data-bs-dismiss="toast" aria-label="Close"></button>          
           </div>
           <div class="toast-body">
             Vyplň prosím všechna pole.
@@ -62,10 +63,15 @@
 
     <header class="detailHeader sticky-top">
           
-         <nav class="navbar navbar-expand-lg bg-body-tertiary a"> <!-- ddRecipeNav-->
+         <nav class="navbar navbar-expand-lg bg-body-tertiary a detailNavbar"> <!-- ddRecipeNav-->
+
             <a class="navbar-brand back-arrow detailBackArrow" href="/"><i class="fa-solid fa-arrow-left"></i></a>
-            <h1 class="detailTitle">Přidání receptu</h1>
-        </nav>
+
+            <h1 class="detailTitle">
+              Přidání receptu
+            </h1>
+
+          </nav>
     
     </header>
     
@@ -82,7 +88,7 @@
 
                 <form  class="addTitle" action="">
 
-                  <div class="input-group mb-3">
+                  <div class="input-group inputGroupAddTitle mb-4">
 
                     <input type="text" name="title" class="form-control addTitleInput" placeholder="Napiš název receptu" >
 
@@ -100,6 +106,7 @@
             <div class="addIngredientWrapper col">
 
               <h2>
+                <i class="fa-solid fa-cart-shopping" style="color: #B197FC;"></i>
                 Ingredience
               </h2>
                     
@@ -128,6 +135,7 @@
             <div class="addStepWrapper col">
 
               <h2>
+                <i class="fa-solid fa-scroll" style="color: #B197FC;"></i>
                 Postup
               </h2>
                     

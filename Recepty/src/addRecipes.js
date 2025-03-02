@@ -54,7 +54,7 @@ function addStep() {
 }
 
 //function that will get value from select form
-function selectSmthing(selectForm) {
+function selectFormValue(selectForm) {
   const indexOfSelection = selectForm.selectedIndex;
   const selectedValue = selectForm[indexOfSelection].innerText;
 
@@ -100,9 +100,9 @@ async function postRecipe() {
   let selectCategoryForm = document.querySelector(".selectCategoryForm");
   let selectTimeForm = document.querySelector(".selectTimeForm");
 
-  let category = selectSmthing(selectCategoryForm);
+  let category = selectFormValue(selectCategoryForm);
 
-  let time = selectSmthing(selectTimeForm);
+  let time = selectFormValue(selectTimeForm);
 
   if (
     titleToPost.value !== "" &&

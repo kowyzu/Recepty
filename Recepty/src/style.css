@@ -5,12 +5,12 @@ body {
   background-color:#E5D9F2 ;
 }
 
-header {
-  /* margin-bottom: 2rem; */
+.toast-header, .toast-body {
+  background-color: #e5d9f28f;
 }
 
+
 .bg-body-tertiary {
-  
   background-color: #d7cff7 !important;
 }
 
@@ -20,13 +20,17 @@ header {
   padding-right: 0.2rem;
 }
 
-.form-control {
+.form-control, .form-select {
   border-color: pink;
 }
 
-.form-control:focus {
+.form-control:focus, .form-select:focus, .toastBtn:focus {
   border-color: #69247C;
   box-shadow: 0 0 0 .25rem rgba(255, 192, 203, 0.589);
+}
+
+.form-select:hover {
+  --bs-dropdown-bg: #E5D9F2
 }
 
 .btn-outline-success {
@@ -121,7 +125,7 @@ header {
 
 }
 
-.btn-primary {
+.btn{
   --bs-btn-color: #69247C;
   --bs-btn-bg: #CDC1FF;
   --bs-btn-border-color: #d07edb;
@@ -283,22 +287,41 @@ ul {
   font-size: larger;
 }
 
-/* /////////// */
+/* /////////////// */
 /* add Recipe CSS */
-/* ///////// */
+/* ///////////// */
+
+.detailNavbar{
+  justify-content: flex-start;
+  text-align: center;
+  flex-wrap: nowrap;
+}
+
+.detailTitle{
+    flex-grow: 1; 
+}
+
+.addTitleInput {
+  text-align: center;
+}
 
 .addedIngredientsList {
   list-style-type: none;
   padding-left: 0;
 }
 
-.saveRecipeButton {
+.saveRecipeButton{
   margin-top: 0.875rem;
 }
 
-.saveRecipeButton:hover {
+.saveRecipeButton:hover, .addIngredientButton:hover, .addStepButton:hover {
   --bs-btn-hover-color: #300442;
   --bs-btn-active-color: #6a168b;
+}
+
+.deleteButton:hover {
+  --bs-btn-hover-color: #cc16aecb;
+  --bs-btn-active-color: #8b1685;
 }
 
 .selectTimeForm {
@@ -320,6 +343,11 @@ ul {
   color: #740707;
   display: none;
   --animate-duration: 2s;
+  text-align: left !important;
+}
+
+.stepValueWarning {
+  margin-left: 2rem;
 }
 
 .addIngredientButton, .addStepButton {
