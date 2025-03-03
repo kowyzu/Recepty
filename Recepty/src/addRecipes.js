@@ -147,9 +147,7 @@ function buttonReset() {
   const targetButton = document.querySelector(".saveRecipeButton");
   targetButton.removeAttribute("disabled");
 
-  targetButton.innerHTML = `                  
-    Ulož svůj nový recept
-    `;
+  targetButton.innerText = "Ulož svůj nový recept";
 }
 
 //Posts new recipe to supabase
