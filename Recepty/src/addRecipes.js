@@ -131,8 +131,31 @@ function showToast(typeOfNotification, notificationText) {
   toastBootstrap.show();
 }
 
+//Change button to spinner
+function buttonSpinner() {
+  const targetButton = document.querySelector(".saveRecipeButton");
+  targetButton.setAttribute("disabled", "true");
+
+  targetButton.innerHTML = `                  
+    <span class="spinner-border spinner-border-sm" aria-hidden="true"></span>
+    <span class="visually-hidden" role="status">Loading...</span>
+    `;
+}
+
+//Resets the previous button
+function buttonReset() {
+  const targetButton = document.querySelector(".saveRecipeButton");
+  targetButton.removeAttribute("disabled");
+
+  targetButton.innerHTML = `                  
+    Ulož svůj nový recept
+    `;
+}
+
 //Posts new recipe to supabase
 async function postRecipe() {
+  buttonSpinner();
+
   let titleToPost = document.querySelector(".addTitleInput").value;
 
   let ingredientsToPost = document
@@ -184,6 +207,8 @@ async function postRecipe() {
   } else {
     showToast("missing", "Vyplň prosím všechna pole.");
   }
+
+  buttonReset();
 }
 
 //function for letting user know that he needs to add some value
