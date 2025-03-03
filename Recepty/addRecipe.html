@@ -14,53 +14,6 @@
   
   <body >
 
-    <div aria-live="polite" aria-atomic="true" class="position-relative">
-      <!-- Position it: -->
-      <!-- - `.toast-container` for spacing between toasts -->
-      <!-- - `top-0` & `end-0` to position the toasts in the upper right corner -->
-      <!-- - `.p-3` to prevent the toasts from sticking to the edge of the container  -->
-      <div class="toast-container top-0 end-0 ">
-    
-        <!-- Then put toasts within -->
-
-        <div id="toastMissingFields" class="toast fixed-top fixedTopRight" role="alert" aria-live="assertive" aria-atomic="true">
-          <div class="toast-header">
-            <!-- <i class="fa-solid fa-check" style="color: #63E6BE;"></i> -->
-            <i class="fa-solid fa-triangle-exclamation" style="color: #870828;"></i>
-            <strong class="me-auto"></strong>
-            <button type="button" class="btn btn-close toastBtn" data-bs-dismiss="toast" aria-label="Close"></button>          
-          </div>
-          <div class="toast-body">
-            Vyplň prosím všechna pole.
-          </div>
-        </div> 
-       
-        <div id="toastError" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
-          <div class="toast-header">
-            <img src="..." class="rounded me-2" alt="...">
-            <strong class="me-auto">Bootstrap</strong>
-            <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
-          </div>
-          <div class="toast-body">
-            Něco se pokazilo, zkus to prosím znovu.
-          </div>
-        </div>
-
-        <div id="toastSuccess" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
-          <div class="toast-header">
-            <img src="..." class="rounded me-2" alt="...">
-            <strong class="me-auto">Bootstrap</strong>
-            <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>          
-          </div>
-          <div class="toast-body">
-            Nový recept je na světě! Teď už jen sehnat někoho, kdo to uvaří.
-          </div>
-        </div> 
-
-      </div>
-      
-    </div>
-
     <header class="detailHeader sticky-top">
           
          <nav class="navbar navbar-expand-lg bg-body-tertiary a detailNavbar"> <!-- ddRecipeNav-->
@@ -262,6 +215,8 @@
     </div>
 
     <footer>
+
+      <button class="testButt">TEST</button>
 
     </footer>
 

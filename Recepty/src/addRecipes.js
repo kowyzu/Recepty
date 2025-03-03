@@ -80,18 +80,60 @@ function extractValuesFromList(listItems, inputType) {
   return extractedValues;
 }
 
-console.log("TODO");
 //Shows toast with additional information
-function showToast() {
-  const toastSuccess = document.getElementById("toastSuccess");
-  const toastBootstrapSuccess =
-    bootstrap.Toast.getOrCreateInstance(toastSuccess);
-  toastBootstrapSuccess.show();
+function showToast(typeOfNotification, notificationText) {
+  const toastToShow = document.createElement("div");
+
+  let iconType;
+  let iconColor;
+
+  if (typeOfNotification === "success") {
+    iconType = "fa-check";
+    iconColor = "#63E6BE";
+  } else {
+    iconType = "fa-triangle-exclamation";
+    iconColor = "#870828";
+  }
+
+  toastToShow.innerHTML = `
+  <div aria-live="polite" aria-atomic="true" class="position-relative">
+
+    <div class="toast-container top-0 end-0 ">
+
+      <div id="toastToShow" class="toast fixed-top fixedTopRight" role="alert" aria-live="assertive" aria-atomic="true">
+
+        <div class="toast-header">
+
+          <i class="fa-solid ${iconType}" style="color: ${iconColor};"></i>
+
+          <strong class="me-auto"></strong>
+
+          <button type="button" class="btn btn-close toastBtn" data-bs-dismiss="toast" aria-label="Close"></button> 
+
+        </div>
+
+        <div class="toast-body">
+          ${notificationText}
+        </div>
+
+      </div> 
+
+    </div> 
+
+  </div> 
+`;
+
+  document.body.appendChild(toastToShow);
+
+  const toastTest = document.getElementById("toastToShow");
+
+  const toastBootstrap = bootstrap.Toast.getOrCreateInstance(toastTest);
+  toastBootstrap.show();
 }
 
 //Posts new recipe to supabase
 async function postRecipe() {
-  let titleToPost = document.querySelector(".addTitleInput");
+  let titleToPost = document.querySelector(".addTitleInput").value;
 
   let ingredientsToPost = document
     .querySelector(".addedIngredientsList")
@@ -110,14 +152,12 @@ async function postRecipe() {
   let time = selectFormValue(document.querySelector(".selectTimeForm"));
 
   if (
-    titleToPost.value !== "" &&
+    titleToPost !== "" &&
     ingredientsToPost.length === arrayOfIngredients.length &&
     stepsToPost.length === arrayOfSteps.length &&
     category !== null &&
     time !== null
   ) {
-    titleToPost = titleToPost.value;
-
     try {
       const { error } = await insertRow(
         titleToPost,
@@ -129,29 +169,20 @@ async function postRecipe() {
 
       if (error !== null) {
         console.error("Error inserting recipe:", error);
-        const toastError = document.getElementById("toastError");
-        const toastBootstrapError =
-          bootstrap.Toast.getOrCreateInstance(toastError);
-        toastBootstrapError.show();
+        showToast("error", "Něco se pokazilo, zkus to prosím znovu.");
       } else {
         console.log("Recipe added successfully!");
-        const toastSuccess = document.getElementById("toastSuccess");
-        const toastBootstrapSuccess =
-          bootstrap.Toast.getOrCreateInstance(toastSuccess);
-        toastBootstrapSuccess.show();
+        showToast(
+          "success",
+          "Nový recept je na světě! Teď už jen sehnat někoho, kdo to uvaří."
+        );
       }
     } catch (err) {
       console.error("Unexpected error:", err);
-      const toastError = document.getElementById("toastError");
-      const toastBootstrapError =
-        bootstrap.Toast.getOrCreateInstance(toastError);
-      toastBootstrapError.show();
+      showToast("error", "Něco se pokazilo, zkus to prosím znovu.");
     }
   } else {
-    const toastMissingFields = document.getElementById("toastMissingFields");
-    const toastBootstrapMissingFields =
-      bootstrap.Toast.getOrCreateInstance(toastMissingFields);
-    toastBootstrapMissingFields.show();
+    showToast("missing", "Vyplň prosím všechna pole.");
   }
 }
 
