@@ -3,10 +3,17 @@
 import { insertRow } from "./utils";
 import "animate.css";
 
+function addTitleToLocalStorage() {
+  let title = document.querySelector(".addTitleInput");
+  localStorage.removeItem("title");
+
+  if (title.value.trim() !== "") {
+    localStorage.setItem("title", title.value);
+  }
+}
+
 //function for adding new ingredients in form of inputs
 function addIngredient() {
-  // let ingredientInput = document.querySelector("#input-1");
-
   const ingredientPlaceHolder = document.querySelector(".addedIngredientsList");
 
   let newIngredientClass = "addedIngredient";
@@ -29,6 +36,14 @@ function addIngredient() {
   ingredientPlaceHolder.appendChild(newIngredient);
 
   newIngredient.querySelector("input").focus();
+
+  let allIngredients = document
+    .querySelector(".addedIngredientsList")
+    .querySelectorAll("li");
+
+  let arrayOfIngredients = extractValuesFromList(allIngredients, "input");
+
+  addArrayToLocalStorage("ingredients", arrayOfIngredients);
 }
 
 //function for adding new steps in form of textAreas
@@ -51,6 +66,21 @@ function addStep() {
   stepPlaceHolder.appendChild(newStep);
 
   newStep.querySelector("textarea").focus();
+
+  let allSteps = document
+    .querySelector(".addedStepsList")
+    .querySelectorAll("li");
+
+  let arrayOfSteps = extractValuesFromList(allSteps, "textarea");
+
+  addArrayToLocalStorage("steps", arrayOfSteps);
+}
+
+//add array to localStorage
+function addArrayToLocalStorage(keyName, arrayOfValues) {
+  localStorage.removeItem(keyName);
+
+  localStorage.setItem(keyName, JSON.stringify(arrayOfValues));
 }
 
 //function that will get value from select form
@@ -71,7 +101,7 @@ function extractValuesFromList(listItems, inputType) {
 
   listItems.forEach((listItem) => {
     if (listItem.querySelector(inputType).value !== "") {
-      extractedValues.push(listItem.querySelector(inputType).value);
+      extractedValues.push(listItem.querySelector(inputType).value.trim());
     } else {
       return;
     }
@@ -151,60 +181,63 @@ function buttonReset() {
 }
 
 //Posts new recipe to supabase
+console.log("TODO");
 async function postRecipe() {
   buttonSpinner();
 
-  let titleToPost = document.querySelector(".addTitleInput").value;
+  let titleToPost = localStorage.getItem("title");
 
-  let ingredientsToPost = document
-    .querySelector(".addedIngredientsList")
-    .querySelectorAll("li");
+  // let titleToPost = document.querySelector(".addTitleInput").value;
 
-  let arrayOfIngredients = extractValuesFromList(ingredientsToPost, "input");
+  // let ingredientsToPost = document
+  //   .querySelector(".addedIngredientsList")
+  //   .querySelectorAll("li");
 
-  let stepsToPost = document
-    .querySelector(".addedStepsList")
-    .querySelectorAll("li");
+  // let arrayOfIngredients = extractValuesFromList(ingredientsToPost, "input");
 
-  let arrayOfSteps = extractValuesFromList(stepsToPost, "textarea");
+  // let stepsToPost = document
+  //   .querySelector(".addedStepsList")
+  //   .querySelectorAll("li");
+
+  // let arrayOfSteps = extractValuesFromList(stepsToPost, "textarea");
 
   let category = selectFormValue(document.querySelector(".selectCategoryForm"));
 
   let time = selectFormValue(document.querySelector(".selectTimeForm"));
 
-  if (
-    titleToPost !== "" &&
-    ingredientsToPost.length === arrayOfIngredients.length &&
-    stepsToPost.length === arrayOfSteps.length &&
-    category !== null &&
-    time !== null
-  ) {
-    try {
-      const { error } = await insertRow(
-        titleToPost,
-        arrayOfIngredients,
-        arrayOfSteps,
-        category,
-        time
-      );
+  // if (
+  // titleToPost !== null &&
+  //   ingredientsToPost.length === arrayOfIngredients.length &&
+  //   stepsToPost.length === arrayOfSteps.length &&
+  //   category !== null &&
+  //   time !== null
+  // ) {
+  //   try {
+  //     const { error } = await insertRow(
+  //       titleToPost,
+  //       arrayOfIngredients,
+  //       arrayOfSteps,
+  //       category,
+  //       time
+  //     );
 
-      if (error !== null) {
-        console.error("Error inserting recipe:", error);
-        showToast("error", "Něco se pokazilo, zkus to prosím znovu.");
-      } else {
-        console.log("Recipe added successfully!");
-        showToast(
-          "success",
-          "Nový recept je na světě! Teď už jen sehnat někoho, kdo to uvaří."
-        );
-      }
-    } catch (err) {
-      console.error("Unexpected error:", err);
-      showToast("error", "Něco se pokazilo, zkus to prosím znovu.");
-    }
-  } else {
-    showToast("missing", "Vyplň prosím všechna pole.");
-  }
+  //     if (error !== null) {
+  //       console.error("Error inserting recipe:", error);
+  //       showToast("error", "Něco se pokazilo, zkus to prosím znovu.");
+  //     } else {
+  //       console.log("Recipe added successfully!");
+  //       showToast(
+  //         "success",
+  //         "Nový recept je na světě! Teď už jen sehnat někoho, kdo to uvaří."
+  //       );
+  //     }
+  //   } catch (err) {
+  //     console.error("Unexpected error:", err);
+  //     showToast("error", "Něco se pokazilo, zkus to prosím znovu.");
+  //   }
+  // } else {
+  //   showToast("missing", "Vyplň prosím všechna pole.");
+  // }
 
   buttonReset();
 }
@@ -240,6 +273,11 @@ function valueWarning(shakeTarget, changeColorTarget, warningText) {
 ///////////////
 
 // add new ingredient input by button
+let title = document.querySelector(".addTitleInput");
+title.addEventListener("change", () => {
+  addTitleToLocalStorage();
+});
+
 let ingredientsUl = document.querySelector(".addedIngredientsList");
 let addIngredientButton = document.querySelector(".addIngredientButton");
 let inputValueWarning = document.querySelector(".inputValueWarning");
