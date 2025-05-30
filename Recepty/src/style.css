@@ -206,11 +206,7 @@ body {
 /* detail CSS */
 /* ///////// */
 
-@media screen and (min-width: 1900px) {
-  .detail-body {
-    max-width: 60%;
-  }
-}
+
 
 .detailNav {
   margin-bottom: 1rem;

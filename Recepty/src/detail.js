@@ -13,8 +13,10 @@ async function displayRecipeDetail(recipesData, id) {
       let newNav = document.createElement("nav");
 
       newNav.innerHTML = `
+      <div class="container-fluid">
         <a class="navbar-brand back-arrow detailBackArrow" href="/"><i class="fa-solid fa-arrow-left"></i></a>
         <h1 class="detailTitle">${recipe.title}</h1>
+      </div>
       `;
 
       introPlaceHolder.appendChild(newNav);
@@ -24,7 +26,7 @@ async function displayRecipeDetail(recipesData, id) {
         "navbar-expand-lg",
         "bg-body-tertiary",
         "detailNav",
-        "fixed-top"
+        "sticky-top"
       );
 
       let newIntro = document.createElement("div");
@@ -32,7 +34,7 @@ async function displayRecipeDetail(recipesData, id) {
       newIntro.innerHTML = `
         <img class="detailImg" src="./src/recipes_imgs/recipe_${recipe.id}.webp" alt="${recipe.titel}">
       `;
-      newIntro.classList.add("detailIntro");
+      newIntro.classList.add("detailIntro", "m-5");
 
       introPlaceHolder.appendChild(newIntro);
 

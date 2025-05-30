@@ -16,7 +16,7 @@ function displayRecipes(recipesData) {
   recipesData.forEach((recipe) => {
     if (recipe.is_sub_recipe === false) {
       let newRecipe = document.createElement("div");
-      newRecipe.classList.add("recipe");
+      newRecipe.classList.add("recipe", "col");
 
       let badges = displayBadges(recipe);
 
