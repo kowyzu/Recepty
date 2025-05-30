@@ -1,4 +1,3 @@
-console.log("hello from JS detail");
 import { fetchData } from "./utils";
 
 async function displayRecipeDetail(recipesData, id) {
@@ -40,7 +39,6 @@ async function displayRecipeDetail(recipesData, id) {
 
       let img = newIntro.querySelector("img");
       img.addEventListener("error", (event) => {
-        console.log(event);
         img.src = "./src/recipes_imgs/default.webp";
       });
 
@@ -85,9 +83,7 @@ async function displayRecipeDetail(recipesData, id) {
 let recipesData = await fetchData();
 
 const urlParams = new URLSearchParams(window.location.search);
-console.log(urlParams);
 let myParam = urlParams.get("id");
 myParam = Number(myParam);
-console.log(myParam);
 
 await displayRecipeDetail(recipesData, myParam);

@@ -17,7 +17,6 @@ export async function fetchData() {
     return;
   }
 
-  console.log("Fetched data:", data);
   recipesData = data;
   return recipesData;
 }
@@ -33,7 +32,6 @@ export async function fetchFilteredData(search) {
     return;
   }
 
-  console.log("Fetched data:", data);
   recipesData = data;
   return recipesData;
 }

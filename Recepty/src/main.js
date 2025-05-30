@@ -1,5 +1,3 @@
-console.log("hello from JS");
-
 import JSConfetti from "js-confetti";
 
 const jsConfetti = new JSConfetti();
@@ -45,7 +43,6 @@ function displayRecipes(recipesData) {
 
       let img = newRecipe.querySelector("img");
       img.addEventListener("error", (event) => {
-        console.log(event);
         img.src = "./src/recipes_imgs/default.webp";
       });
     }
@@ -92,7 +89,6 @@ function handleSearch() {
   let input = document.querySelector(".searchInput");
 
   searchForm.addEventListener("submit", async (event) => {
-    console.log(event);
     event.preventDefault();
 
     cleanRecipesList();
@@ -101,16 +97,12 @@ function handleSearch() {
       recipesData = await fetchData();
       displayRecipes(recipesData);
     } else if (input.value !== "") {
-      console.log("je tam neco");
       recipesData = await fetchFilteredData(input.value);
       displayRecipes(recipesData);
-      console.log(recipesData);
     }
   });
 
   input.addEventListener("input", async (event) => {
-    console.log(event);
-
     //display all recipes after using cross in input
     if (event.target.value === "") {
       cleanRecipesList();
@@ -126,42 +118,12 @@ function cleanRecipesList() {
   recipesPlaceHolder.innerHTML = ``;
 }
 
-//Function that will make emojis explode after the click on link a than redirects user to the link//
-
-// async function clickExplosion() {
-//   const explodingButtons = document.querySelectorAll(".explodingBtn");
-
-//   explodingButtons.forEach((explodingButton) => {
-//     console.log(explodingButton);
-
-//     let explodingButtonId = explodingButton.getAttribute("id");
-//     console.log(explodingButtonId);
-
-//     explodingButton.addEventListener("click", (event) => {
-//       event.preventDefault();
-
-//       jsConfetti.addConfetti({
-//         emojis: ["🥘", "🥦", "🍩", "🍗", "🧁", "🍪"],
-//       });
-//       setTimeout(() => {
-//         window.location.href = `detail.html?id=${explodingButtonId}`;
-//       }, 1200);
-//     });
-//   });
-// }
-
 //////////////////
 //Main Program //
 /////////////////
 
 let recipesData = await fetchData();
 
-console.log(recipesData);
-
 displayRecipes(recipesData);
 
 handleSearch();
-
-// await displayInfoBadges(recipesData);
-
-// await clickExplosion();

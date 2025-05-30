@@ -1,5 +1,3 @@
-// console.log("uh hello world agaign");
-
 import { insertRow } from "./utils";
 import "animate.css";
 
@@ -181,63 +179,63 @@ function buttonReset() {
 }
 
 //Posts new recipe to supabase
-console.log("TODO");
+
 async function postRecipe() {
   buttonSpinner();
 
-  let titleToPost = localStorage.getItem("title");
+  // let titleToPost = localStorage.getItem("title");
 
-  // let titleToPost = document.querySelector(".addTitleInput").value;
+  let titleToPost = document.querySelector(".addTitleInput").value;
 
-  // let ingredientsToPost = document
-  //   .querySelector(".addedIngredientsList")
-  //   .querySelectorAll("li");
+  let ingredientsToPost = document
+    .querySelector(".addedIngredientsList")
+    .querySelectorAll("li");
 
-  // let arrayOfIngredients = extractValuesFromList(ingredientsToPost, "input");
+  let arrayOfIngredients = extractValuesFromList(ingredientsToPost, "input");
 
-  // let stepsToPost = document
-  //   .querySelector(".addedStepsList")
-  //   .querySelectorAll("li");
+  let stepsToPost = document
+    .querySelector(".addedStepsList")
+    .querySelectorAll("li");
 
-  // let arrayOfSteps = extractValuesFromList(stepsToPost, "textarea");
+  let arrayOfSteps = extractValuesFromList(stepsToPost, "textarea");
 
   let category = selectFormValue(document.querySelector(".selectCategoryForm"));
 
   let time = selectFormValue(document.querySelector(".selectTimeForm"));
 
-  // if (
-  // titleToPost !== null &&
-  //   ingredientsToPost.length === arrayOfIngredients.length &&
-  //   stepsToPost.length === arrayOfSteps.length &&
-  //   category !== null &&
-  //   time !== null
-  // ) {
-  //   try {
-  //     const { error } = await insertRow(
-  //       titleToPost,
-  //       arrayOfIngredients,
-  //       arrayOfSteps,
-  //       category,
-  //       time
-  //     );
+  if (
+    titleToPost !== null &&
+    ingredientsToPost.length === arrayOfIngredients.length &&
+    stepsToPost.length === arrayOfSteps.length &&
+    category !== null &&
+    time !== null
+  ) {
+    try {
+      const { error } = await insertRow(
+        titleToPost,
+        arrayOfIngredients,
+        arrayOfSteps,
+        category,
+        time
+      );
 
-  //     if (error !== null) {
-  //       console.error("Error inserting recipe:", error);
-  //       showToast("error", "Něco se pokazilo, zkus to prosím znovu.");
-  //     } else {
-  //       console.log("Recipe added successfully!");
-  //       showToast(
-  //         "success",
-  //         "Nový recept je na světě! Teď už jen sehnat někoho, kdo to uvaří."
-  //       );
-  //     }
-  //   } catch (err) {
-  //     console.error("Unexpected error:", err);
-  //     showToast("error", "Něco se pokazilo, zkus to prosím znovu.");
-  //   }
-  // } else {
-  //   showToast("missing", "Vyplň prosím všechna pole.");
-  // }
+      if (error !== null) {
+        console.error("Error inserting recipe:", error);
+        showToast("error", "Něco se pokazilo, zkus to prosím znovu.");
+      } else {
+        // console.log("Recipe added successfully!");
+        showToast(
+          "success",
+          "Nový recept je na světě! Teď už jen sehnat někoho, kdo to uvaří."
+        );
+      }
+    } catch (err) {
+      console.error("Unexpected error:", err);
+      showToast("error", "Něco se pokazilo, zkus to prosím znovu.");
+    }
+  } else {
+    showToast("missing", "Vyplň prosím všechna pole.");
+  }
 
   buttonReset();
 }
