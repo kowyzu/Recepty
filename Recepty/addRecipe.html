@@ -14,180 +14,114 @@
   
   <body >
 
-    <header class="detailHeader sticky-top">
-          
+    <header class="detailHeader sticky-top">        
          <nav class="navbar navbar-expand-lg bg-body-tertiary a detailNavbar"> <!-- ddRecipeNav-->
-
             <a class="navbar-brand back-arrow detailBackArrow" href="/"><i class="fa-solid fa-arrow-left"></i></a>
-
             <h1 class="detailTitle">
               Přidání receptu
             </h1>
-
-          </nav>
-    
-    </header>
-    
+          </nav>  
+    </header>    
     
     <div class="container mt-3"> <!-- addRecipeBody-->
-
-      <div class="row"> 
-    
-        <main class="addRecipeMain">
-            
+      <div class="row">    
+        <main class="addRecipeMain">           
           <div class="row"> 
-
               <div class="addTitleWrapper col"></div>
-
                 <form  class="addTitle" action="">
-
                   <div class="input-group inputGroupAddTitle mb-4">
-
                     <input type="text" name="title" class="form-control addTitleInput" placeholder="Napiš název receptu" >
-
                   </div>
-
                 </form>
-
               </div>
-
           </div>    
 
-
           <div class="row text-center">
-
             <div class="addIngredientWrapper col">
-
               <h2>
                 <i class="fa-solid fa-cart-shopping" style="color: #B197FC;"></i>
                 Ingredience
-              </h2>
-                    
+              </h2>                    
               <ul class="addedIngredientsList">
-
                 <li class="firstAddedIngredient">
-
                   <div class="input-group mb-3">
                     <input type="text" name="addedIngredient" id="input-1" class="form-control addedIngredientInput"/>               
-                  </div>
-                
+                  </div>                
                 </li>
-
               </ul>
-
               <p class="inputValueWarning animate__animated animate__fadeIn">
                 Recept na vzduch? 🍃 Zajímavý koncept, ale radši doplň tu předchozí ingredienci!
               </p>
-
               <button class="btn btn-outline-secondary addIngredientButton" >
                 Přidej ingredienci
-              </button>
-                  
+              </button>                 
             </div>
-
+            
             <div class="addStepWrapper col">
-
               <h2>
                 <i class="fa-solid fa-scroll" style="color: #B197FC;"></i>
                 Postup
-              </h2>
-                    
+              </h2>                   
               <ol class="addedStepsList">
-
                 <li class="firstAddedStep">
-
                   <div class="input-group mb-3">
-
-                    <textarea name="addedStep" id="textArea-1" class="form-control addedStepTextArea"></textarea>
-                    
-                  </div>
-          
-                </li>
-              
+                    <textarea name="addedStep" id="textArea-1" class="form-control addedStepTextArea"></textarea>                    
+                  </div>         
+                </li>             
               </ol>
-
               <p class="stepValueWarning animate__animated animate__fadeIn">
                 Ani nejlepší recept nefunguje bez všech kroků! Doplň ten předchozí. 📋🥘
               </p>
-
               <button class="btn btn-outline-secondary addStepButton">
                 Přidej další krok
               </button>
-
             </div>
-
           </div>
 
 
           <div class="row">
-
             <div class="col">
+                <select class="form-select selectCategoryForm " aria-label="Default select example">
+                  <option selected>Do jaké kategorie tento recept patří? </option>
+                  <option value="1">Vaření</option>
+                  <option value="2">Pečení</option>
+                </select>
 
-              <select class="form-select selectCategoryForm " aria-label="Default select example">
-                <option selected>Do jaké kategorie tento recept patří? </option>
-                <option value="1">Vaření</option>
-                <option value="2">Pečení</option>
-              </select>
-
-              <select class="form-select selectTimeForm " aria-label="Default select example">
-
-                <option selected>Jak dlouho přibližně trvá příprava? </option>
-
-                <option value="1">~ 15 min</option>
-
-                <option value="2">~ 30 min</option>
-
-                <option value="3">~ 45 min</option>
-
-                <option value="4">~ 1 h</option>
-
-                <option value="5">~ 1 h 15 min</option>
-
-                <option value="6">~ 1 h 30 min</option>
-
-                <option value="7">> 1 h 30 min</option>
-
-              </select>
-
+                <select class="form-select selectTimeForm " aria-label="Default select example">
+                  <option selected>Jak dlouho přibližně trvá příprava? </option>
+                  <option value="1">~ 15 min</option>
+                  <option value="2">~ 30 min</option>
+                  <option value="3">~ 45 min</option>
+                  <option value="4">~ 1 h</option>
+                  <option value="5">~ 1 h 15 min</option>
+                  <option value="6">~ 1 h 30 min</option>
+                  <option value="7">> 1 h 30 min</option>
+                </select>
               </div>
-
           </div>
 
           <div class="row">
-
             <div class="col">
-
               <div class="d-grid gap-2">
-
                 <button class="btn btn-primary saveRecipeButton" type="button">
                   Ulož svůj nový recept
                 </button>
-
                 <!-- <button class="btn btn-primary" type="button" disabled>
                   <span class="spinner-border spinner-border-sm" aria-hidden="true"></span>
                   <span class="visually-hidden" role="status">Loading...</span>
                 </button> -->
-
               </div>
-
             </div>
-
-          </div>
-          
+          </div>        
         </main>
-
       </div>   
-
     </div>
 
     <footer>
-
-      <button class="testButt">TEST</button>
-
     </footer>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
-   
+  
   </body>
 
 </html>
